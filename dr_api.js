@@ -1,4 +1,4 @@
-module.exports = [{
+module.exports = {
   strains:[
     {
       name: 'Mericans',
@@ -6,27 +6,27 @@ module.exports = [{
       mind: 10,
       infection: 2,
       self_teach:[
-        }
+        {
         name: 'Bolt-Action',
         cost: 3
         },
-        }
+        {
         name: 'Brawling',
         cost: 3
         },
-        }
+        {
         name: 'Melee Weapon, Large',
         cost: 3
         },
-        }
+        {
         name: 'Melee Weapon, Two-Handed',
         cost: 3
         },
-        }
+        {
         name: 'Throwing',
         cost: 3
         },
-        }
+        {
         name: 'Throwing, Javelins',
         cost: 3
         }
@@ -46,7 +46,8 @@ module.exports = [{
         desc: "Lacking subtlety, Mericans can never have the professions of Martial Artist or Spy."
         }
       ],
-      desc: "Many things were destroyed when the world broke apart. Society, culture, and education fell to pieces. As a rule, only those who were strong, smart, and lucky were able to adapt and move forward after the fall of society. However, some folks were just too damned stubborn to die.<br>When the apocalypse happened, some people were so pigheaded about giving up how their life was that they outright refused. Not willing to give up their homes, their beer, and their sports teams, these people dug in and took the apocalypse on the chin. Stalwart or not, the apocalypse killed the vast majority of these stubborn people; however, some survived by sheer dumb luck and dogged determination. <br>Holding on to values handed down by that first determined generation, a pride in a country that doesn’t exist anymore, and buckets of gumption, the Mericans were forged. Not the best educated of people, and without a doubt not the most spiritually minded, this well-meaning Strain nevertheless views itself as the bastion of hope for the future. Shotgun in one hand, a beer in the other, and an eye on the neighbor’s daughter, the Mericans look to redefine their fallen nation.<br>While stronger and built tougher than most Strains, the Mericans have an issue in regards to the zombie virus. Many scientists believe that sometime in this Strain's history there was a failed anti-virus called “high fructose corn syrup”. This substance, as well as the many other strange chemicals in a Merican’s body, results in most Mericans succumbing to the virus and joining the undead faster than other Strains. Merican zombies never progress beyond the incubation phase of the infection process, and the widespread Merican culture explains the sheer number of zombies in the shambling horde.<br>Mericans come from all over what was considered the pre-Fall American continent. While heartland Mericans lean towards the tradition of cowboy hats and quick guns, it is not uncommon for far south Mericans to be confused with Natural Ones. To the north, Mericans tend to lean more towards hearty jobs like being a lumberjack while on the eastern and western coasts the Merican is often found working hard in foundries and forges.",
+      restricted_profs:['Martial Artist', 'Spy'],
+      desc: "Many things were destroyed when the world broke apart. Society, culture, and education fell to pieces. As a rule, only those who were strong, smart, and lucky were able to adapt and move forward after the fall of society. However, some folks were just too damned stubborn to die.<br>When the apocalypse happened, some people were so pigheaded about giving up how their life was that they outright refused. Not willing to give up their homes, their beer, and their sports teams, these people dug in and took the apocalypse on the chin. Stalwart or not, the apocalypse killed the vast majority of these stubborn people; however, some survived by sheer dumb luck and dogged determination. <br> Holding on to values handed down by that first determined generation, a pride in a country that doesn’t exist anymore, and buckets of gumption, the Mericans were forged. Not the best educated of people, and without a doubt not the most spiritually minded, this well-meaning Strain nevertheless views itself as the bastion of hope for the future. Shotgun in one hand, a beer in the other, and an eye on the neighbor’s daughter, the Mericans look to redefine their fallen nation.<br>While stronger and built tougher than most Strains, the Mericans have an issue in regards to the zombie virus. Many scientists believe that sometime in this Strain's history there was a failed anti-virus called “high fructose corn syrup”. This substance, as well as the many other strange chemicals in a Merican’s body, results in most Mericans succumbing to the virus and joining the undead faster than other Strains. Merican zombies never progress beyond the incubation phase of the infection process, and the widespread Merican culture explains the sheer number of zombies in the shambling horde.<br>Mericans come from all over what was considered the pre-Fall American continent. While heartland Mericans lean towards the tradition of cowboy hats and quick guns, it is not uncommon for far south Mericans to be confused with Natural Ones. To the north, Mericans tend to lean more towards hearty jobs like being a lumberjack while on the eastern and western coasts the Merican is often found working hard in foundries and forges.",
       req: "MERICA! Love it or get run down. Merican men and women love blue jeans, cowboy hats, ironic t-shirts (whether or not they get it), tall boots, big belt buckles, and gun belts with lots of firearms. Social animals in every sense of the term, Mericans are never more than a few paces from a bottle or someone attractive to share it with. They have a natural distrust of authority, especially if it isn’t another Merican in charge, and tend to mock anyone in elegant or fancy attire, accusing them of “puttin’ on airs” and such. Well, most fancy attire with the noted exception of hats. All Mericans respect a properly impressive hat, though they will often bother other strains about “getting it right” by adding eagle feathers, playing cards, bullets, written slogans, ironic buttons and other outlandish and showy adornments.<br>Mericans collect souvenirs from places they have visited, love to engage in drinking and athletic contests, and seem incapable of realizing when they have gone too far. While mistaking their conversational volume for stupidity is often a fatal error – genuine idiots don’t tend to last long in this ravaged world – it is true that Mericans are loud, always think they have a great idea, and in the end look out for number one.",
     },
     {
@@ -55,27 +56,27 @@ module.exports = [{
       mind:6,
       infection:6,
       self_teach:[
-        }
+        {
         name: 'Avoid',
         cost: 3
         },
-        }
+        {
         name: 'Barricade',
         cost: 3
         },
-        }
+        {
         name: 'Bomb Awareness',
         cost: 3
         },
-        }
+        {
         name: 'Fearful Glare',
         cost: 3
         },
-        }
+        {
         name: 'Frightening Force',
         cost: 3
         },
-        }
+        {
         name: 'Melee Weapon, Large',
         cost: 3
         }
@@ -95,92 +96,93 @@ module.exports = [{
         desc: "Reds can never follow any faith or religion, nor can they ever have the following professions: Caravan Driver, Charlatan, Entertainer, Gambler, or Priest. In addition, Red Star may never receive the benefits of faith powered Skills (Call the All Mighty, Faith Healing, Holy Rites, Live Again, Life Giver)."
         }
       ],
+      restricted_profs:['Caravan Drive', 'Charlatan', 'Entertainer', 'Gambler', 'Priest'],
       desc: "When order was needed and resources became scarce, those that lived in communities accustomed to limited rations and sharing among smaller groups were already well adapted for survival. The most cut-throat and efficient communities were able to thrive, keeping properties tightly held within the group while those that opened their door to outsiders often fell. Localized communism, and tightly knit communities, exist all across the fallen wastelands.<br>Red Star travel in small groups that are tighter than the standard family structure. Every member of a Red Star family structure is not only considered equal, but they are also considered part of a polygamist commune. Children are raised by the cell until the time at which they are considered adults, and are expected to travel from the commune to join or begin another. Sometimes “trades” are made where family members move between cells in order to ensure suitable breeding stock is maintained.<br>Those of the Red Star are at heart a martial people, focusing on the pragmatic needs of their cell instead of succumbing to temptation and escapism. They are often considered grim or somber to outsiders, with men and women both displaying an external strength and a demeanor of cold logic. With their eerie harmony, dour attitudes and striking appearance, a cell of Reds always makes an impression wherever they travel.<br>Found in the remains of Westernized communes, rural centralized communities, or in the frozen wastelands the Red Star are a culturally varied people. While the Red Star embrace unity, togetherness, and the abandonment of the capitalist system, it is not completely unheard of for Red Star to allow non-Red Star to serve their communes. These non-Red Star, while not completely equal, are considered useful tools and allies in ensuring the growth and strength of the individual cell.",
       req: "Those born of the Red Star are as deadly as the reaping scythe and as hard as the hammer that crosses it. They prefer dark, modest clothes that do not show much skin or accent their figure, almost exclusively in red and black. (Military olive drab sometimes appears when large amounts of black would be impractical, such as hot summer months.) Those of the Red Star tend to speak very directly and expect the same honesty in return, giving them a reputation as a stern, humorless people. In truth, away from the eyes of outsiders they can be as warm and effusive as any other Strain, but only to other Red Star.<br>Red Star live in small communes, sharing all property with their cell members and reaching decisions as a group. Individual leaders are chosen only when absolutely necessary, and are expected to step down once the current crisis passes. Red Star do not believe in independent marriage, and instead are considered collectively “wed” to all other eligible members of their cell. This is not a hedonistic arrangement, but simple practicality – Red Star see the jealousy and interpersonal rivalries that accompany exclusive romantic relationships as poisonous to the overall solidarity of the cell. Red Star do not follow these guidelines out of choice, but instead are a requirement of every Red Star.",
     }
-  }],
+  ],
   open_skills:[
-    }
+    {
     name: 'Avoid',
     cost: 9
     },
-    }
+    {
     name: 'Barricade',
     cost: 9
     },
-    }
+    {
     name: 'Bolt Action',
     cost: 9
     },
-    }
+    {
     name: 'Brawling',
     cost: 9
     },
-    }
+    {
     name: 'Check Quality',
     cost: 9
     },
-    }
+    {
     name: 'Check Value',
     cost: 9
     },
-    }
+    {
     name: 'First Aid',
     cost: 9
     },
-    }
+    {
     name: 'Force Barricade',
     cost: 9
     },
-    }
+    {
     name: 'Literacy',
     cost: 6
     },
-    }
+    {
     name: 'Lore (Various Types)',
     cost: 6
     },
-    }
+    {
     name: 'Melee Weapon, Small',
     cost: 6
     },
-    }
+    {
     name: 'Melee Weapon, Standard',
     cost: 6
     },
-    }
+    {
     name: 'Melee Weapon, Two-Hand',
     cost: 6
     },
-    }
+    {
     name: 'Parry',
     cost: 6
     },
-    }
+    {
     name: 'Pistol Whip',
     cost: 9
     },
-    }
+    {
     name: 'Shield',
     cost: 6
     },
-    }
+    {
     name: 'Teach',
     cost: 1
     },
-    }
+    {
     name: 'Throwing',
     cost: 6
     },
-    }
+    {
     name: 'Throwing, Javelins',
     cost: 6
     },
-    }
+    {
     name: 'Tie Binds',
     cost: 6
     }
-  ]
+  ],
   professions:[
     {
     name: 'Engineer',
@@ -188,72 +190,72 @@ module.exports = [{
       {
       name: 'Barricade',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Check Quality',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Chop',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Florentine',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Force Barricade',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name:'Forging the Future',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Income',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Literacy',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Melee Weapon, Small',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Patch Job',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Repair',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'SCIENCE!',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Smelt',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Weld',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
     ],
     bio: "Weapons, guns, and armor are all very important, but so are fortifications and safe houses. Engineers specialize in improving the shanties and structures where the world’s populations dwell, making them stronger, more durable and more efficient. In some cases, Engineers can even improve upon their design, adapting them for the specialized purposes in the short term. Be it incorporating inspiring signs of faith into a crumbling church, or double-layering walls to resist the Tank trying to force them down, the Engineer plans to outlast her problems, rather than outmaneuver them.",
@@ -265,72 +267,72 @@ module.exports = [{
       {
       name: 'Analyze Creature',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Avoid',
-      cost: ,
-      pre-req:[]
+      cost: 3,
+      prereq:[]
       },
       {
       name: 'Barricade',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Beg For Life',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Brawling',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Check Quality',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Check Value',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Chop',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Cover of Night',
       cost: 6,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Escape Bonds',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Feign Death',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Melee Weapon, Two-Hand',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       },
       {
       name: 'Patch Job',
       cost: 6,
-      pre-req:['Chop']
+      prereq:['Chop']
       },
       {
       name: 'Scrounge',
       cost: 3,
-      pre-req:[]
+      prereq:[]
       }
     ],
     bio: "They are the brave new world, the unsung heroes of settlement and caravan alike. They are the future, surviving on the bones of the past. Scrappers, Gatherers, Trash-Pickers. Scavengers eke out their living through an uncanny knack for finding and exploiting the useful pieces of a wasted world. They survive at all costs, and at all costs provide. Without the tireless efforts of the Scavenger, the guns have no ammo, the builders no Scrap, the medics no medicine, and the world no chance.",
@@ -506,7 +508,7 @@ module.exports = [{
     {
     name: 'Shield',
     mp: 'Nil',
-    desc: "This skill costs no Mind Points, and allows the user of this skill to wield a shield. Shields do not prevent damage from firearms, and may not be used as weapons. For example, if someone fires bullets at your shield, you take the damage; the shield does not block it.  Instead, shields can be used to block thrown weapons, bows and melee attacks.  For safety reasons shields may not have a surface area of more than 9 total square feet. Holes and carved out sections will not deduct from the total of 9 square feet of surface area. A shield may not stand more than 4 feet tall, nor wider than 4 feet wide at its widest point.<br>Examples: A rectangle shield that is 4 feet tall cannot be more than 2 ¼ feet wide to remain under the 9 square foot restriction. A shield that is 3 feet tall may be 3 feet wide to remain under the 9 square foot restriction. A “grid” shield that is a series of banded bars with open spaces still may not be more than 3 feet tall if 3 feet wide, as the interior holes do not subtract from the total surface space.<br>  Items that are not crafted shields may NEVER be used as a shield. Strikes that land on ‘improvised shields’ are considered hits, and usage of improvised items as shields will result in safety violations (IE: Using a briefcase as a shield)."
+    desc: "This skill costs no Mind Points, and allows the user of this skill to wield a shield. Shields do not prevent damage from firearms, and may not be used as weapons. For example, if someone fires bullets at your shield, you take the damage; the shield does not block it.  Instead, shields can be used to block thrown weapons, bows and melee attacks.  For safety reasons shields may not have a surface area of more than 9 total square feet. Holes and carved out sections will not deduct from the total of 9 square feet of surface area. A shield may not stand more than 4 feet tall, nor wider than 4 feet wide at its widest point.<br>Examples: A rectangle shield that is 4 feet tall cannot be more than 2.75 feet wide to remain under the 9 square foot restriction. A shield that is 3 feet tall may be 3 feet wide to remain under the 9 square foot restriction. A “grid” shield that is a series of banded bars with open spaces still may not be more than 3 feet tall if 3 feet wide, as the interior holes do not subtract from the total surface space.<br>Items that are not crafted shields may NEVER be used as a shield. Strikes that land on ‘improvised shields’ are considered hits, and usage of improvised items as shields will result in safety violations (IE: Using a briefcase as a shield)."
     },
     {
     name: 'Smelt',
@@ -539,4 +541,4 @@ module.exports = [{
     desc: "This Skill allows a character to combine Scrap into more complicated and useful components. By spending 5 Mind Points and 10 Minutes role playing welding materials at a Forge, the welder may turn in the required materials at Logistics to convert 4 Basic Scrap into 1 Uncommon Scrap, or 4 Uncommon Scrap into 1 Rare Scrap. While roleplaying welding, you must make a significant amount of noise (there is no 'quiet' crafting!). Welding requires 2 hands, and can be interrupted if the welder leaves the area within 5 feet of the Forge, utilizes any combat skills, or falls into Bleed Out. If the process is interrupted, all Mind Points spent and materials invested are lost. Many Engineering Plans require Welding, and some special Welding Plans may be discovered in game that allow for other items to be Welded. Non-standard plans must be present while role playing welding, and presented to Logistics when getting the new item issued."
     }
   ]
-}]
+}
