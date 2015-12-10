@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="CharGen" lang="en">
+<html ng-app="DRApp" lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>character database</title>
@@ -10,8 +10,8 @@
 <!-- CSS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 
-<!-- FONT /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	<link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+<!-- FONTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<link href='https://fonts.googleapis.com/css?family=Stardos+Stencil:400,700|Special+Elite' rel='stylesheet' type='text/css'>
 
 <!-- ANGULAR /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -36,40 +36,90 @@
 		</nav>
 	</div>
 
-	<ngchargen id="content-wrapper">
+	<ngdrapp id="content-wrapper">
 
-		<!-- TRYING TO JUST GET A LIST OF STRAINS -->
+<!-- STRAIN LIST /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-		<div ng-repeat="strain in chargen.dystopia.strains | orderBy : 'name'" class="strain">
-			<h4><strong>Name: </strong></h4><p>{{ strain.name }}</p><br>
-			<h5><strong>Mind: </strong></h5><p>{{ strain.mind }}</p><br>
-			<h5><strong>Health: </strong></h5><p>{{ strain.health }}</p><br>
-			<h5><strong>Infection: </strong></h5><p>{{ strain.infection }}</p><br>
+		<div ng-repeat="strain in drapp.dystopia.strains | orderBy : 'name'">
+			<div class="strain-thumb">
 
-			<h5><strong>Skills: </strong></h5>
-			<div ng-repeat="skill in strain.self_teach | orderBy : 'name'">
-				<p>{{ skill.name }} : {{ skill.cost }}</p><br>
+				<h3>{{ strain.name }}</h3>
+				<table class="strainTable">
+					<tr>
+						<td><h4>Mind</h4></td>
+						<td><h4>Health</h4></td>
+						<td><h4>Infection</h4></td>
+					</tr>
+					<tr>
+						<td><h4>{{ strain.mind }}</h4></td>
+						<td><h4>{{ strain.health }}</h4></td>
+						<td><h4>{{ strain.infection }}</h4></td>
+					</tr>
+				</table>
+
+				<button class="btn btn-sml" data-toggle="modal" data-target="#{{ strain.name | nospace}}" onclick="this.blur()">See more...</button><br>
+
 			</div>
-			<h5><strong>Advantage: </strong>{{ strain.adv.name }}</p><br>
-			<p>{{ strain.adv.desc }}</p><br>
-			<div ng-repeat="dis in strain.dis | orderBy : 'name'">
-				<h5><strong>Disadvantages: </strong></h5><p>{{ dis.name }}<br>
-				{{ dis.desc }}</p><br>
+
+<!-- STRAIN MODAL ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<div class="modal fade strainMode" id="{{ strain.name | nospace}}" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title">{{ strain.name }}</h2>
+					</div>
+					<div class="modal-body">
+
+						<table class="strainTable">
+							<tr>
+								<td><h4>Mind</h4></td>
+								<td><h4>Health</h4></td>
+								<td><h4>Infection</h4></td>
+							</tr>
+							<tr>
+								<td><h4>{{ strain.mind }}</h4></td>
+								<td><h4>{{ strain.health }}</h4></td>
+								<td><h4>{{ strain.infection }}</h4></td>
+							</tr>
+						</table>
+
+						<h4>Skills </h4>
+						<div ng-repeat="skill in strain.self_teach | orderBy : 'name'">
+							<h5>{{ skill.name }} | cost: {{ skill.cost }}</p><br>
+						</div>
+						<h4>Advantage</h4><br>
+						<h5>{{ strain.adv.name }}</h5>
+						<p>{{ strain.adv.desc }}</p><br>
+						<div ng-repeat="dis in strain.dis | orderBy : 'name'">
+							<h4>Disadvantages: </h4><br>
+							<h5>{{ dis.name }}</h5>
+							<p>{{ dis.desc }}</p><br>
+						</div>
+						<h4>Description: </h4>
+						<p ng-bind-html="strain.desc | unsafe"></p><br>
+						<h4>Requirement: </h4>
+						<p ng-bind-html="strain.req | unsafe"></p><br>
+
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" >close</button>
+						<button ng-click="drapp.formStrain = strain.name" ng-model="drapp.formStrain" class="btn" data-dismiss="modal" >choose {{ strain.name }}</button>
+					</div>
+				</div>
 			</div>
-			<h5><strong>Description: </strong></h5><p><p>{{ strain.desc }}</p><br>
-			<h5><strong>Requirement: </strong></h5><p><p>{{ strain.req }}</p><br>
-			<hr>
 		</div>
+	</div><!-- close ng-repeat strain in drapp.dystopia.strains -->
 
 <!-- CHARACTER LIST //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-		<div id="chars-container" ng-repeat="char in chargen.chars | orderBy : 'name'">
+		<div id="chars-container" ng-repeat="char in drapp.chars | orderBy : 'name'">
 
 			<div class="char-thumb" ng-class="{'char-full' : full}" ng-style="{'background-image':'url({{char.imgurl}})'}">
-				<h4><strong>Name: </strong>{{ char.name }}<br>
-				<strong>Strain: </strong>{{ char.strain }}</h4><br>
-				<span ng-show="show"><h4><strong>Backstory: </strong></h4><p class="backstory">{{ char.backstory }}</p>
-					<button class="btn btn-sml" data-toggle="modal" data-target="#editModal" ng-click="chargen.populateForm(char);" onclick="this.blur()">edit</button>
-					<button class="btn btn-sml" ng-click="chargen.deleteChar(char)" onclick="this.blur()">delete</button>
+				<h4>Name: {{ char.name }}<br>
+				Strain: {{ char.strain }}</h4><br>
+				<span ng-show="show"><h4>Backstory: </h4><p class="backstory">{{ char.backstory }}</p>
+					<button class="btn btn-sml" data-toggle="modal" data-target="#editModal" ng-click="drapp.populateForm(char);" onclick="this.blur()">edit</button>
+					<button class="btn btn-sml" ng-click="drapp.deleteChar(char)" onclick="this.blur()">delete</button>
 				</span><br>
 				<button class="btn btn-sml" ng-click="show = !show; full = !full" onclick="this.blur()">
 					<span ng-hide="show">show</span>
@@ -77,37 +127,10 @@
 				</button><br>
 
 			</div>
-		</div>
+		</div> <!-- close ng-repeat char in drapp.chars -->
 
-<!-- NEW CHARACTER MODAL /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">new character form</h4>
-	      </div>
-	      <div class="modal-body">
-					<form>
-						<label>Name</label>
-						<input type="text" ng-model="chargen.formCharName"><br>
-						<label>Strain</label>
-						<input type="text" ng-model="chargen.formCharStrain"><br>
-						<label>Image</label>
-						<input type="text" ng-model="chargen.formCharimgURL"><br>
-						<label>Backstory</label><br>
-						<textarea name="Text1" cols="40" rows="5" ng-model="chargen.formCharBackstory" class="backstory-input"></textarea>
-					</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button class="btn" data-dismiss="modal" >Close</button>
-	        <button ng-click="chargen.addChar()" class="btn" data-dismiss="modal" >save new character</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-<!-- EDIT CHARACTER MODAL /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- EDIT CHARACTER MODAL ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -116,24 +139,37 @@
 	      <div class="modal-body">
 					<form>
 						<label>Name</label>
-						<input type="text" ng-model="chargen.formCharName"><br>
+						<input type="text" ng-model="drapp.formCharName"><br>
 						<label>Strain</label>
-						<input type="text" ng-model="chargen.formCharStrain"><br>
+						<input type="text" ng-model="drapp.formCharStrain"><br>
 						<label>Image</label>
-						<input type="text" ng-model="chargen.formCharimgURL"><br>
+						<input type="text" ng-model="drapp.formCharimgURL"><br>
 						<label>Backstory</label><br>
-						<textarea name="Text1" cols="40" rows="5" ng-model="chargen.formCharBackstory" class="backstory-input"></textarea>
+						<textarea name="Text1" cols="40" rows="5" ng-model="drapp.formCharBackstory" class="backstory-input"></textarea>
 					</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button class="btn" data-dismiss="modal" >close</button>
-					<button ng-click="chargen.editChar()" class="btn" data-dismiss="modal" >save changes</button>
+					<button ng-click="drapp.editChar()" class="btn" data-dismiss="modal" >save changes</button>
 	      </div>
 	    </div>
 	  </div>
 	</div>
 
-	</ngchargen><!-- End of content-wrapper -->
+	<!-- CHARACTER BUILD SIDEBAR ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<div id="build">
+	    <h3 class="your">current build</h3>
+	    <div id="build_inner">
+				<form class="new_char_form">
+					<label>Name</label>
+					<input type="text" ng-model="drapp.formCharName" placeholder="Name this character."><br>
+					<label>Backstory</label><br>
+					<textarea name="Text1" ng-model="drapp.formCharBackstory" class="backstory-input" placeholder="What is this character's story?"></textarea><br>
+				</form>
+			  <button ng-click="drapp.addChar()" class="btn-sm">save new character</button>
+	    </div>
+
+</ngdrapp><!-- End of content-wrapper -->
 
 </body>
 </html>

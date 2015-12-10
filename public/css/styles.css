@@ -77,8 +77,9 @@ nav h2{
 }
 
 h1, h2, h3, h4, h5, h6 {
-	margin: none;
-	padding: none;
+	font-family: 'Stardos Stencil', cursive;
+	margin: 0px;
+	padding: 0px;
 }
 
 /* =======================================================================================================================================*/
@@ -118,21 +119,118 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* =======================================================================================================================================*/
-/* MODAL STYLING =========================================================================================================================*/
+/* FORM STYLING =========================================================================================================================*/
 /* =======================================================================================================================================*/
 
 input{
-	width: 90%;
+	background-color: rgba(255, 255, 255, 0);
+	width: 100%;
 	border: none;
 	border-bottom: 2px solid black;
 }
 
 .backstory-input{
-	width: 98%;
-	height: 400px;
+	background-color: rgba(255, 255, 255, 0);
+	width: 100%;
+	height: 100px;
 	border: 2px solid black;
 }
 
-.strain{
-	color: white;
+.new_char_form{
+	overflow: scroll;
+}
+
+/* =======================================================================================================================================*/
+/* STRAIN STYLING ========================================================================================================================*/
+/* =======================================================================================================================================*/
+
+.strain-thumb{
+	position: relative;
+	display: block;
+	background-color: #d5d5d5;
+	background-size: cover;
+	border-radius: 10px;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	width: 30%;
+	height: 25vh;
+	color: black;
+	overflow: hidden;
+}
+
+.strainTable{
+	margin: 10px 0px;
+}
+.strainTable td{
+	padding-right: 10px;
+}
+
+.strainMode h2, h3, h4, h5{
+	font-weight: 700;
+}
+
+/* =======================================================================================================================================*/
+/* BUILD STYLING =========================================================================================================================*/
+/* =======================================================================================================================================*/
+
+.your{
+	position: relative;
+	width: 200px;
+	right: 80px;
+	top: 80px;
+	/*height: 200px;*/
+	/*ROTATE EFFECT*/
+	/* Safari */
+	-webkit-transform: rotate(90deg);
+	/* Firefox */
+	-moz-transform: rotate(90deg);
+	/* IE */
+	-ms-transform: rotate(90deg);
+	/* Opera */
+	-o-transform: rotate(90deg);
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
+}
+
+#build {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  width: 50px;
+	height: 300px;
+  padding: 12px 0;
+  text-align: center;
+  background: #fffefc;
+	background-image: url(/images/build_bkgd.png);
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  border-radius: 10px 0 0 10px;
+}
+
+#build_inner {
+  position: fixed;
+  top: 40px;
+  right: -80%;
+  background: #fffefc;
+	background-image: url(/images/build_bkgd.png);
+	background-size: cover;
+  width: 80%;
+  padding: 25px;
+  height: 90vh;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  text-align: left;
+  border-radius: 10px 0 0 10px;
+}
+
+#build:hover {
+  right: 250px;
+}
+#build:hover #build_inner {
+  right: 0;
 }
