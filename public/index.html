@@ -27,6 +27,10 @@
 
 </head>
 
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- BODY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
 <body>
 
   <div id="sidebar">
@@ -68,6 +72,9 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h2 class="modal-title">{{ strain.name }}</h2>
+
+						<button ng-click="drapp.addStrain(strain)" ng-model="drapp.formStrain" class="btn" data-dismiss="modal" >choose {{ strain.name }}</button>
+
 					</div>
 					<div class="modal-body">
 
@@ -104,7 +111,6 @@
 					</div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" >close</button>
-						<button ng-click="drapp.formStrain = strain.name" ng-model="drapp.formStrain" class="btn" data-dismiss="modal" >choose {{ strain.name }}</button>
 					</div>
 				</div>
 			</div>

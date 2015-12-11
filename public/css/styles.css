@@ -101,8 +101,8 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 10px;
 	padding: 10px;
 	width: 45%;
-	color: #d9c5bb;
-	text-shadow: 2px 2px 4px black;
+	color: black;
+	/*text-shadow: 2px 2px 4px white;*/
 }
 
 .char-full{
@@ -154,7 +154,7 @@ input{
 	margin: 10px;
 	padding: 10px;
 	width: 30%;
-	height: 25vh;
+	height: 20vh;
 	color: black;
 	overflow: hidden;
 }
@@ -198,7 +198,7 @@ input{
   top: 40px;
   right: 0;
   width: 50px;
-	height: 300px;
+  height: 90vh;
   padding: 12px 0;
   text-align: center;
   background: #fffefc;
