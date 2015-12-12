@@ -36,7 +36,7 @@
   <div id="sidebar">
 		<nav>
 			<div class="row">
-				<div class="col-md-3"><button class="btn btn-sm" ng-click="charListShow = !charListShow"onclick="this.blur()">See Full Character List</button></div>
+				<div class="col-md-3"></div>
 				<div class="col-md-9"><h2>Dystopia Rising Character Creator<h2></div>
 			</div>
 		</nav>
@@ -52,9 +52,10 @@
 		<p> Use this tool to help you build a new Dystopia Rising Character!<br>
 			You will choose a Strain, Profession, Skills, add Mind or Body and finally add a name and a backstory!<br>
 			Click the button below to get started!<br>
-		<button class="btn btn-default" ng-click="strainShow = !strainShow; introHide = !introHide" onclick="this.blur()">
+		<button class="btn btn-default" ng-click="strainShow = !strainShow; introHide = !introHide; buildShow = !buildShow" onclick="this.blur()">
 			Start New Character
 		</button>
+		<button class="btn btn-default" ng-click="charListShow = !charListShow"onclick="this.blur()">See Full Character List</button>
 	</div>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------->
@@ -81,9 +82,8 @@
 					</tr>
 				</table>
 
-				<div ng-show="show">
-
 <!-- Description and requirements ---------------------->
+				<div ng-show="show">
 					<h4>Description </h4>
 					<p ng-bind-html="strain.desc | unsafe"></p><br>
 					<h4>Requirement </h4>
@@ -131,7 +131,7 @@
 		<div ng-repeat="prof in drapp.dystopia.professions | orderBy : 'name'">
 			<div class="prof-thumb" ng-class="{'prof-full' : full}">
 
-				<!-- Skill list ---------------------->
+				<!-- Prof name ---------------------->
 				<h3>{{ prof.name }}</h3><br>
 
 				<div ng-show="show">
@@ -159,11 +159,11 @@
 					<p ng-bind-html="prof.play_if | unsafe"></p><br>
 				</div>
 
-				<!-- Shide/show button ---------------------->
+				<!-- hide/show button ---------------------->
 				<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
 					<span ng-hide="show">show more</span>
 					<span ng-show="show">hide<span>
-				</button><button ng-click="drapp.addProfession(prof)" ng-model="drapp.formProf" class="btn btn-sm">
+				</button><button ng-click="drapp.addProfession(prof); drapp.chooseSkills(); $parent.profShow = !profShow; $parent.skillShow = !skillShow" ng-model="drapp.formProf" class="btn btn-sm">
 					choose {{ prof.name }}
 				</button>
 
@@ -174,24 +174,86 @@
 	</div>
 
 <!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- SKILL LIST //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+	<div ng-show="skillShow">
+		<h1>Step 3: Choose Your Skills</h1>
+		<div ng-repeat="skill in drapp.finalSkillList | orderBy : 'name'">
+			<div class="skill-thumb" ng-class="{'skill-full' : full}">
+
+				<!-- Skill name and cost ---------------------->
+				<h3>{{ skill.name }}</h3>
+				<h4>Cost: {{ skill.cost }} </h4>
+
+				<!-- Skill description ---------------------->
+				<div ng-show="show">
+
+					<p>SKill desc</p>
+
+				</div>
+
+				<!-- hide/show button ---------------------->
+				<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
+					<span ng-hide="show">show more</span>
+					<span ng-show="show">hide<span>
+				</button><button ng-click="drapp.addSkill(skill)" ng-model="drapp.formSkill" class="btn btn-sm">
+					choose {{ skill.name }}
+				</button>
+
+			</div>
+
+		</div><!-- close ng-repeat skill in drapp.skillList -->
+
+	</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- CHARACTER BUILD SIDEBAR ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+	<div ng-show="buildShow">
+
+		<div id="build">
+	    <h3 class="your">current build</h3>
+	    <div id="build_inner">
+				<form class="new_char_form">
+					<label>Name</label>
+					<input type="text" ng-model="drapp.formCharName" placeholder="Name this character"><br><br>
+					<label>Backstory</label><br>
+					<textarea name="Text1" ng-model="drapp.formCharBackstory" class="backstory-input" placeholder="What is this character's story?"></textarea><br>
+				</form>
+			  <button ng-click="drapp.addChar()" class="btn-sm">save new character</button>
+	    </div>
+		</div>
+
+	</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------->
 <!-- CHARACTER LIST //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!----------------------------------------------------------------------------------------------------------------------------------------->
 
 	<div ng-show="charListShow">
 
+		<h1>Your Character List</h1>
+
 		<div id="chars-container" ng-repeat="char in drapp.chars | orderBy : 'name'">
 
 			<div class="char-thumb" ng-class="{'char-full' : full}" ng-style="{'background-image':'url({{char.imgurl}})'}">
-				<h4>Name: {{ char.name }}<br>
-				Strain: {{ char.strain }}</h4><br>
+				<h5>Name:</h5>
+				<p>{{ char.name }}</p>
+				<br>
+				<h5>Strain:</h5>
+				<p>{{ char.strain }}</p>
 				<span ng-show="show"><h4>Backstory: </h4><p class="backstory">{{ char.backstory }}</p>
 					<button class="btn btn-sml" data-toggle="modal" data-target="#editModal" ng-click="drapp.populateForm(char);" onclick="this.blur()">edit</button>
 					<button class="btn btn-sml" ng-click="drapp.deleteChar(char)" onclick="this.blur()">delete</button>
-				</span><br>
+				</span>
+				<br>
 				<button class="btn btn-sml" ng-click="show = !show; full = !full" onclick="this.blur()">
 					<span ng-hide="show">show</span>
 					<span ng-show="show">hide<span>
-				</button><br>
+				</button>
+				<br>
 
 			</div>
 		</div> <!-- close ng-repeat char in drapp.chars -->
@@ -203,7 +265,7 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">edit character form</h4>
+					<h3 class="modal-title" id="myModalLabel">edit character</h3>
 	      </div>
 	      <div class="modal-body">
 					<form>
@@ -224,22 +286,6 @@
 	    </div>
 	  </div>
 	</div>
-
-<!----------------------------------------------------------------------------------------------------------------------------------------->
-<!-- CHARACTER BUILD SIDEBAR ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!----------------------------------------------------------------------------------------------------------------------------------------->
-
-	<div id="build">
-	    <h3 class="your">current build</h3>
-	    <div id="build_inner">
-				<form class="new_char_form">
-					<label>Name</label>
-					<input type="text" ng-model="drapp.formCharName" placeholder="Name this character."><br><br>
-					<label>Backstory</label><br>
-					<textarea name="Text1" ng-model="drapp.formCharBackstory" class="backstory-input" placeholder="What is this character's story?"></textarea><br>
-				</form>
-			  <button ng-click="drapp.addChar()" class="btn-sm">save new character</button>
-	    </div>
 
 </ngdrapp><!-- End of content-wrapper -->
 
