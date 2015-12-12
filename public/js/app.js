@@ -119,7 +119,9 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 
 var buildSkillList = []
 
+// choose Strain ====================>
 this.addStrain = function(strain){
+
 	var strainName =  strain.name,
 			mind = strain.mind,
 			health = strain.health,
@@ -129,13 +131,27 @@ this.addStrain = function(strain){
 		buildSkillList.push(skill)
 	});
 
-	console.log("addStrain provided: strain: " + strainName);
-	console.log("addStrain provided: mind: " + mind);
-	console.log("addStrain provided: health: " + health);
-	console.log("addStrain provided: infection: " + infection);
-	console.log("addStrain provided skills: " + buildSkillList)
+	console.log("addStrain chose: " + strainName);
 }
 
+// Choose Profession ====================>
+this.addProfession = function(prof){
+	var profName = prof.name
+
+	prof.skill_list.forEach(function(skill){
+		var profSkill = { name: skill.name, cost: skill.cost}
+		buildSkillList.push(profSkill)
+	});
+
+	console.log("addProf chose: " + profName);
+	console.log("after addProf skill list: ");
+	buildSkillList.forEach(function(skill){
+		console.log(skill.name);
+	});
+
+}
+
+// Final build ====================>
 this.buildChar = function(strainName){
 
 console.log("this.buildChar - building a character!");
