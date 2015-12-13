@@ -52,11 +52,14 @@
 		<p> Use this tool to help you build a new Dystopia Rising Character!<br>
 			You will choose a Strain, Profession, Skills, add Mind or Body and finally add a name and a backstory!<br>
 			Click the button below to get started!<br>
+
 		<button class="btn btn-default" ng-click="strainShow = !strainShow; introHide = !introHide; buildShow = !buildShow" onclick="this.blur()">
 			Start New Character
 		</button>
 		<button class="btn btn-default" ng-click="charListShow = !charListShow"onclick="this.blur()">See Full Character List</button>
 	</div>
+
+
 
 <!----------------------------------------------------------------------------------------------------------------------------------------->
 <!-- STRAIN LIST /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -149,7 +152,6 @@
 						</tr>
 					</table>
 
-
 				<br>
 
 					<!-- Bio and Play If... ---------------------->
@@ -163,7 +165,7 @@
 				<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
 					<span ng-hide="show">show more</span>
 					<span ng-show="show">hide<span>
-				</button><button ng-click="drapp.addProfession(prof); drapp.chooseSkills(); $parent.profShow = !profShow; $parent.skillShow = !skillShow" ng-model="drapp.formProf" class="btn btn-sm">
+				</button><button ng-click="drapp.addProfession(prof); drapp.makeSkillList(); $parent.profShow = !profShow" ng-mouseleave="$parent.skillShow = !skillShow" ng-model="drapp.formProf" class="btn btn-sm">
 					choose {{ prof.name }}
 				</button>
 
@@ -178,9 +180,11 @@
 <!----------------------------------------------------------------------------------------------------------------------------------------->
 
 	<div ng-show="skillShow">
+
 		<h1>Step 3: Choose Your Skills</h1>
 		<div ng-repeat="skill in drapp.finalSkillList | orderBy : 'name'">
-			<div class="skill-thumb" ng-class="{'skill-full' : full}">
+
+			<div class="skill-thumb" ng-class="{'skill-full' : full}" ng-hide="skillHide">
 
 				<!-- Skill name and cost ---------------------->
 				<h3>{{ skill.name }}</h3>
@@ -188,16 +192,15 @@
 
 				<!-- Skill description ---------------------->
 				<div ng-show="show">
-
-					<p>SKill desc</p>
-
+					<br>
+					<p>{{ skill.desc }}</p>
 				</div>
 
 				<!-- hide/show button ---------------------->
 				<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
 					<span ng-hide="show">show more</span>
 					<span ng-show="show">hide<span>
-				</button><button ng-click="drapp.addSkill(skill)" ng-model="drapp.formSkill" class="btn btn-sm">
+				</button><button ng-click="drapp.addSkill(skill); skillHide = !skillHide" ng-model="drapp.formSkill" class="btn btn-sm">
 					choose {{ skill.name }}
 				</button>
 
@@ -214,11 +217,17 @@
 	<div ng-show="buildShow">
 
 		<div id="build">
-	    <h3 class="your">current build</h3>
+	    <h3 class="your">current build: {{ drapp.buildPoints }} Points</h3>
 	    <div id="build_inner">
 				<form class="new_char_form">
 					<label>Name</label>
 					<input type="text" ng-model="drapp.formCharName" placeholder="Name this character"><br><br>
+					<label>Skills</label>
+					<div ng-repeat="skill in drapp.addedSkillsList">
+						<h4>{{skill.name}}:{{skill.cost}}</h4>
+						<p>{{skill.desc}}</P>
+						<br>
+					</div>
 					<label>Backstory</label><br>
 					<textarea name="Text1" ng-model="drapp.formCharBackstory" class="backstory-input" placeholder="What is this character's story?"></textarea><br>
 				</form>

@@ -24,6 +24,7 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 				// ajax get request to /dystopia - from dr_app.js API
 				self.$http.get('/dystopia').then(function(response) {
 					self.dystopia = response.data;
+
 				});
 
 			};
@@ -116,9 +117,14 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 // CHARACTER BUILDER LOGIC /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var buildSkillList = []
 var buildPoints = 13
+var buildSkillList = []
 var finalSkillList = []
+var addedSkillsList = []
+
+this.buildPoints = buildPoints
+this.finalSkillList = finalSkillList
+this.addedSkillsList = addedSkillsList
 
 // choose Strain ====================>
 this.addStrain = function(strain){
@@ -141,19 +147,21 @@ this.addProfession = function(prof){
 
 	prof.skill_list.forEach(function(skill){
 		var profSkill = { name: skill.name, cost: skill.cost}
-		buildSkillList.push(profSkill)
+
+		buildSkillList.push(profSkill);
+
 	});
 
 	console.log("addProf chose: " + profName);
-	console.log("after addProf skill list: ");
-	buildSkillList.forEach(function(skill){
-		console.log(skill.name);
-	});
+
+}; //addProfession
 
 
+// Make Skill List ====================>
 
+this.makeSkillList = function(){
 
-
+	console.log("CHOOSE SKILLS");
 
 	$.get('/dystopia', function(dystopia){
 
@@ -166,38 +174,39 @@ this.addProfession = function(prof){
 			dystopia.skills.forEach(function(allskill){
 
 				if( buildskill.name === allskill.name){
+
 					finalSkillList.push(
 						{ name: buildskill.name,
 							cost: buildskill.cost,
+							mp: allskill.mp,
 							desc: allskill.desc
 					 })
 
-				};
+				} // if
 
-			});
+			}); //dystopia.skills.forEach
 
-		});
+		}); //buildSkillList.forEach
 
-	});
+		console.log(finalSkillList);
+
+	}); //.get
+
+} //makeSkillList
 
 
+// Add Skills ========================>
+this.addSkill = function(skill){
+
+	buildPoints = buildPoints - skill.cost;
+	this.buildPoints = buildPoints
+	console.log(buildPoints);
+
+	addedSkillsList.push(skill);
+	console.log(addedSkillsList);
 }
 
-
-// Choose Skills ====================>
-
-
-
-this.chooseSkills = function(){
-	console.log("chooseSkills");
-
-	console.log(finalSkillList);
-
-
-}
-
-
-// Final build ====================>
+// Final build ========================>
 this.buildChar = function(strainName){
 
 console.log("this.buildChar - building a character!");
@@ -224,11 +233,6 @@ console.log("this.buildChar - building a character!");
 	} // close return object
 
 }) // close ngdrapp directive
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CUSTOM ANGULAR FILTERS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
