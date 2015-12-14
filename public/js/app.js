@@ -41,193 +41,173 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 // CHARACTER BUILDER LOGIC /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var buildPoints = 13,
-		buildSkillList = [],
-		finalSkillList = [],
-		addedSkillsList = [],
-		mind = 0,
-		health = 0,
-		infection = 0;
+			var buildPoints = 13,
+					buildSkillList = [],
+					finalSkillList = [],
+					addedSkillsList = [],
+					mind = 0,
+					health = 0,
+					infection = 0;
 
-this.buildPoints = buildPoints
-this.finalSkillList = finalSkillList
-this.addedSkillsList = addedSkillsList
+			this.buildPoints = buildPoints
+			this.finalSkillList = finalSkillList
+			this.addedSkillsList = addedSkillsList
 
-// choose Strain ====================>
-this.addStrain = function(strain){
+			// choose Strain ====================>
+			this.addStrain = function(strain){
 
-	var strainName =  strain.name,
-			mind = strain.mind,
-			health = strain.health,
-			infection = strain.infection;
-			adv = strain.adv;
-			dis = strain.dis;
+				var strainName =  strain.name,
+						mind = strain.mind,
+						health = strain.health,
+						infection = strain.infection;
+						adv = strain.adv;
+						dis = strain.dis;
 
-	strain.self_teach.forEach(function(skill){
-		buildSkillList.push(skill)
-	});
+				strain.self_teach.forEach(function(skill){
+					buildSkillList.push(skill)
+				});
 
-	this.strainName = strainName;
-	this.mind = mind;
-	this.health = health;
-	this.infection = infection;
-	this.adv = adv;
-	this.dis = dis;
+				this.strainName = strainName;
+				this.mind = mind;
+				this.health = health;
+				this.infection = infection;
+				this.adv = adv;
+				this.dis = dis;
 
-	skillCount = 0
-	console.log("Final skill list");
-	buildSkillList.forEach(function(skill){
-		skillCount++
-		console.log(skillCount + " " + skill.name);
-	})
+				skillCount = 0
+				console.log("Final skill list");
+				buildSkillList.forEach(function(skill){
+					skillCount++
+					console.log(skillCount + " " + skill.name);
+				})
 
-	console.log("addStrain chose: " + strainName);
-}
+				console.log("addStrain chose: " + strainName);
+			}
 
-// Choose Profession ====================>
+			// Choose Profession ====================>
 
-this.addProfession = function(prof){
+			this.addProfession = function(prof){
 
-	var profName = prof.name;
+				var profName = prof.name;
 
-	this.profName = profName;
+				this.profName = profName;
 
-	console.log("addProf chose: " + profName);
+				var self = this;
 
-	prof.skill_list.forEach(function(skill){
-		var profSkill = { name: skill.name, cost: skill.cost}
+				console.log("addProf chose: " + profName);
 
-		buildSkillList.push(profSkill);
+				prof.skill_list.forEach(function(skill){
+					var profSkill = { name: skill.name, cost: skill.cost}
 
-	});
+					buildSkillList.push(profSkill);
 
-	console.log("CHOOSE SKILLS");
+				});
 
-	$.get('/dystopia', function(dystopia){
+				console.log("CHOOSE SKILLS");
 
-		dystopia.open_skills.forEach(function(os){
-				buildSkillList.push(os);
-		});
+				this.$http.get('/dystopia').then(function(dystopia){
 
-		buildSkillList.forEach(function(buildskill){
+					var dystopia = dystopia.data;
 
-			dystopia.skills.forEach(function(allskill){
+					dystopia.open_skills.forEach(function(os){
+							buildSkillList.push(os);
+					});
 
-				if( buildskill.name === allskill.name){
+					buildSkillList.forEach(function(buildskill){
 
-					finalSkillList.push(
-						{ name: buildskill.name,
-							cost: buildskill.cost,
-							mp: allskill.mp,
-							desc: allskill.desc
-					 })
+						dystopia.skills.forEach(function(allskill){
 
+							if( buildskill.name === allskill.name){
 
+								self.finalSkillList.push(
+									{ name: buildskill.name,
+										cost: buildskill.cost,
+										mp: allskill.mp,
+										desc: allskill.desc
+								 })
 
-				} // if
+							} // if
 
-			}); //dystopia.skills.forEach
+						}); //dystopia.skills.forEach
 
-		}); //buildSkillList.forEach
+					}); //buildSkillList.forEach
 
-		skillCount = 0
-		console.log("Final skill list");
-		finalSkillList.forEach(function(skill){
-			skillCount++
-			console.log(skillCount + " " + skill.name);
-		})
+					skillCount = 0
+					console.log("Final skill list");
+					finalSkillList.forEach(function(skill){
+						skillCount++
+						console.log(skillCount + " " + skill.name);
+					})
 
-	}); //.get
+				}); //.get
 
-} //addProf
-
-
-// Add Skills ========================>
-
-this.addSkill = function(skill){
-
-	if(buildPoints - skill.cost >= 0){
-		buildPoints = buildPoints - skill.cost;
-		this.buildPoints = buildPoints
-		console.log(buildPoints);
-
-		addedSkillsList.push(skill);
-		console.log(addedSkillsList);
-	}
-	else if(buildPoints - skill.cost <= 0) {
-		alert("You do not have enough build left for this skill")
-	}
-
-}
-
-this.removeSkill = function(skill){
-
-	buildPoints = buildPoints + skill.cost;
-	this.buildPoints = buildPoints
-	console.log(buildPoints);
-
-	addedSkillsList.pop(skill);
-	finalSkillList.push(skill);
-	console.log(addedSkillsList);
-
-}
-// Change stats ========================>
-
-this.addMind = function(){
-	if(this.buildPoints > 0){
-		this.mind = this.mind + 1
-		this.buildPoints = this.buildPoints -1
-		console.log(this.mind);
-	}
-	else if(this.buildPoints <= 0) {
-		alert("You do not have enough build left to add any more mind")
-	}
-}
-
-this.subtractMind = function(){
-	this.mind = this.mind - 1
-	this.buildPoints = this.buildPoints + 1
-	console.log(this.mind);
-}
-
-this.addHealth = function(){
-	if(this.buildPoints > 0){
-		this.health = this.health + 1
-		this.buildPoints = this.buildPoints -1
-		console.log(this.health);
-	}
-	else if(this.buildPoints <= 0) {
-		alert("You do not have enough build left to add any more health")
-	}
-}
-
-this.subtractHealth = function(){
-	this.health = this.health - 1
-	this.buildPoints = this.buildPoints + 1
-	console.log(this.health);
-}
+			} //addProf
 
 
-// Final build ========================>
-// this.buildChar = function(strainName){
-//
-// console.log("this.buildChar - building a character!");
-//
-// 	var built = {
-// 		name: '',
-// 		strain: strainName,
-// 		mind: '',
-// 		health: '',
-// 		infection: '',
-// 		profession: [],
-// 		skills: [],
-// 		adv: '',
-// 		dis: [],
-// 		imgurl: '',
-// 		backstory: ''
-// 	}
-// 	console.log(built);
-// }
+			// Add Skills ========================>
+
+			this.addSkill = function(skill){
+
+				if(buildPoints - skill.cost >= 0){
+					buildPoints = buildPoints - skill.cost;
+					this.buildPoints = buildPoints
+					console.log(buildPoints);
+
+					addedSkillsList.push(skill);
+					console.log(addedSkillsList);
+				}
+				else if(buildPoints - skill.cost <= 0) {
+					alert("You do not have enough build left for this skill")
+				}
+
+			}
+
+			this.removeSkill = function(skill){
+
+				buildPoints = buildPoints + skill.cost;
+				this.buildPoints = buildPoints
+				console.log(buildPoints);
+
+				addedSkillsList.pop(skill);
+				finalSkillList.push(skill);
+				console.log(addedSkillsList);
+
+			}
+			// Change stats ========================>
+
+			this.addMind = function(){
+				if(this.buildPoints > 0){
+					this.mind = this.mind + 1
+					this.buildPoints = this.buildPoints -1
+					console.log(this.mind);
+				}
+				else if(this.buildPoints <= 0) {
+					alert("You do not have enough build left to add any more mind")
+				}
+			}
+
+			this.subtractMind = function(){
+				this.mind = this.mind - 1
+				this.buildPoints = this.buildPoints + 1
+				console.log(this.mind);
+			}
+
+			this.addHealth = function(){
+				if(this.buildPoints > 0){
+					this.health = this.health + 1
+					this.buildPoints = this.buildPoints -1
+					console.log(this.health);
+				}
+				else if(this.buildPoints <= 0) {
+					alert("You do not have enough build left to add any more health")
+				}
+			}
+
+			this.subtractHealth = function(){
+				this.health = this.health - 1
+				this.buildPoints = this.buildPoints + 1
+				console.log(this.health);
+			}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // VIEW ALL CHARACTERs /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -255,7 +235,7 @@ this.subtractHealth = function(){
 					mind: this.mind,
 					health: this.health,
 					infection: this.infection,
-					profession: this.profname,
+					profession: this.profName,
 					skills: this.addedSkillsList,
 					adv: this.adv,
 					dis: this.dis,
@@ -268,9 +248,14 @@ this.subtractHealth = function(){
 					self.chars.push(response.data);
 					self.formCharName = '';
 					self.formCharStrain = '';
-					mind = 0;
-					health = 0;
-					infection = 0;
+					this.mind = 0;
+					this.health = 0;
+					this.infection = 0;
+					this.profName = '';
+					this.addedSkillsList = [];
+					this.adv = '';
+					this.dis = [];
+					buildPoints = 13;
 					self.formCharimgURL = '';
 					self.formCharBackstory = '';
 
@@ -286,7 +271,6 @@ this.subtractHealth = function(){
 // POPULATE FORM =====================================//
 				self.formCharId = char._id;
 				self.formCharName = char.name;
-				self.formCharStrain = char.strain;
 				self.formCharBackstory = char.backstory;
 				self.formCharimgURL = char.imgURL;
 

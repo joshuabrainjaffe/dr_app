@@ -4,15 +4,18 @@
 
 body {
 	background-color: black;
+	background-image: url(/images/main_bkgd.jpg);
+	background-size: cover;
+	background-position: top;
 	font-family: 'Special Elite', cursive;
 	color: white;
 }
 
 #main {
 	position: absolute;
-	width: 92%;
+	width: 100%;
 	height: 95vh;
-	left: 120px;
+	left: 50px;;
 	padding: 10px;
 	overflow: scroll;
 }
@@ -60,6 +63,11 @@ a:hover{
 
 table {
 	width: 100%
+}
+
+.lists{
+	position: relative;
+	width: 90%;
 }
 
 /* =======================================================================================================================================*/
@@ -115,8 +123,14 @@ nav h3{
 /* =======================================================================================================================================*/
 
 .intro{
+	position: relative;
+	background-color: rgba(0, 0, 0, 0.75);
 	color: white;
 	text-align: center;
+	width: 100%;
+	height: 25vh;
+	top: -20px;
+	padding-top: 50px;
 }
 
 /* =======================================================================================================================================*/
@@ -306,19 +320,23 @@ nav h3{
 	width: 92%;
 }
 
-.backstory{
+/*.backstory{
 	background-color: rgba(52, 41, 36, 0.75);
 	padding: 10px;
 	border-radius: 5px;
 	text-shadow: none;
 	color: white;
-}
+}*/
 
 .modal-content{
 	background: #fffefc;
 	background-image: url(/images/build_bkgd.png);
 	background-size: cover;
 	color: #342924;
+}
+
+.bedit{
+	font-size: .75em;
 }
 
 /* =======================================================================================================================================*/
@@ -348,17 +366,15 @@ input{
 /* =======================================================================================================================================*/
 
 footer{
-	display: inline;
 	position: absolute;
-	background-color: black;
+	background-color: rgba(0, 0, 0, 0.75);
 	width: 100%;
-	left: 120px;
 	bottom: 0px;
 	padding: 6px;
 	text-align: center;
 }
 
 footer p{
-	width: 90%;
+	left: 120px;
 	font-size: .75em;
 }
