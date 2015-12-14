@@ -6,9 +6,9 @@ var CharSchema = mongoose.Schema({
 	mind: Number,
 	health: Number,
 	infection: Number,
-	profession: Array,
+	profession: String,
 	skills: Array,
-	adv: String,
+	adv: Array,
 	dis: Array,
 	imgurl: String,
 	backstory: String

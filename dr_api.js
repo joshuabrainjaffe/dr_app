@@ -69,6 +69,10 @@ module.exports = {
         cost: 3
         },
         {
+        name: 'Brewing',
+        cost: 3
+        },
+        {
         name: 'Fearful Glare',
         cost: 3
         },
