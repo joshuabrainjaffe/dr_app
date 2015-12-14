@@ -16,7 +16,7 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 			self.dystopia = [];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// VIEW ALL STRAINS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// VIEW DR API /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			this.getDystopia = function() {
 				console.log('getting all strains');
@@ -24,11 +24,210 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 				// ajax get request to /dystopia - from dr_app.js API
 				self.$http.get('/dystopia').then(function(response) {
 					self.dystopia = response.data;
+
 				});
 
 			};
 
 			self.getDystopia()
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CHARACTER ROUTES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CHARACTER BUILDER LOGIC /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var buildPoints = 13,
+		buildSkillList = [],
+		finalSkillList = [],
+		addedSkillsList = [],
+		mind = 0,
+		health = 0,
+		infection = 0;
+
+this.buildPoints = buildPoints
+this.finalSkillList = finalSkillList
+this.addedSkillsList = addedSkillsList
+
+// choose Strain ====================>
+this.addStrain = function(strain){
+
+	var strainName =  strain.name,
+			mind = strain.mind,
+			health = strain.health,
+			infection = strain.infection;
+			adv = strain.adv;
+			dis = strain.dis;
+
+	strain.self_teach.forEach(function(skill){
+		buildSkillList.push(skill)
+	});
+
+	this.strainName = strainName;
+	this.mind = mind;
+	this.health = health;
+	this.infection = infection;
+	this.adv = adv;
+	this.dis = dis;
+
+	skillCount = 0
+	console.log("Final skill list");
+	buildSkillList.forEach(function(skill){
+		skillCount++
+		console.log(skillCount + " " + skill.name);
+	})
+
+	console.log("addStrain chose: " + strainName);
+}
+
+// Choose Profession ====================>
+
+this.addProfession = function(prof){
+
+	var profName = prof.name;
+
+	this.profName = profName;
+
+	console.log("addProf chose: " + profName);
+
+	prof.skill_list.forEach(function(skill){
+		var profSkill = { name: skill.name, cost: skill.cost}
+
+		buildSkillList.push(profSkill);
+
+	});
+
+	console.log("CHOOSE SKILLS");
+
+	$.get('/dystopia', function(dystopia){
+
+		dystopia.open_skills.forEach(function(os){
+				buildSkillList.push(os);
+		});
+
+		buildSkillList.forEach(function(buildskill){
+
+			dystopia.skills.forEach(function(allskill){
+
+				if( buildskill.name === allskill.name){
+
+					finalSkillList.push(
+						{ name: buildskill.name,
+							cost: buildskill.cost,
+							mp: allskill.mp,
+							desc: allskill.desc
+					 })
+
+
+
+				} // if
+
+			}); //dystopia.skills.forEach
+
+		}); //buildSkillList.forEach
+
+		skillCount = 0
+		console.log("Final skill list");
+		finalSkillList.forEach(function(skill){
+			skillCount++
+			console.log(skillCount + " " + skill.name);
+		})
+
+	}); //.get
+
+} //addProf
+
+
+// Add Skills ========================>
+
+this.addSkill = function(skill){
+
+	if(buildPoints - skill.cost >= 0){
+		buildPoints = buildPoints - skill.cost;
+		this.buildPoints = buildPoints
+		console.log(buildPoints);
+
+		addedSkillsList.push(skill);
+		console.log(addedSkillsList);
+	}
+	else if(buildPoints - skill.cost <= 0) {
+		alert("You do not have enough build left for this skill")
+	}
+
+}
+
+this.removeSkill = function(skill){
+
+	buildPoints = buildPoints + skill.cost;
+	this.buildPoints = buildPoints
+	console.log(buildPoints);
+
+	addedSkillsList.pop(skill);
+	finalSkillList.push(skill);
+	console.log(addedSkillsList);
+
+}
+// Change stats ========================>
+
+this.addMind = function(){
+	if(this.buildPoints > 0){
+		this.mind = this.mind + 1
+		this.buildPoints = this.buildPoints -1
+		console.log(this.mind);
+	}
+	else if(this.buildPoints <= 0) {
+		alert("You do not have enough build left to add any more mind")
+	}
+}
+
+this.subtractMind = function(){
+	this.mind = this.mind - 1
+	this.buildPoints = this.buildPoints + 1
+	console.log(this.mind);
+}
+
+this.addHealth = function(){
+	if(this.buildPoints > 0){
+		this.health = this.health + 1
+		this.buildPoints = this.buildPoints -1
+		console.log(this.health);
+	}
+	else if(this.buildPoints <= 0) {
+		alert("You do not have enough build left to add any more health")
+	}
+}
+
+this.subtractHealth = function(){
+	this.health = this.health - 1
+	this.buildPoints = this.buildPoints + 1
+	console.log(this.health);
+}
+
+
+// Final build ========================>
+// this.buildChar = function(strainName){
+//
+// console.log("this.buildChar - building a character!");
+//
+// 	var built = {
+// 		name: '',
+// 		strain: strainName,
+// 		mind: '',
+// 		health: '',
+// 		infection: '',
+// 		profession: [],
+// 		skills: [],
+// 		adv: '',
+// 		dis: [],
+// 		imgurl: '',
+// 		backstory: ''
+// 	}
+// 	console.log(built);
+// }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // VIEW ALL CHARACTERs /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,20 +245,32 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 
 			self.getChars()
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// CHARACTER ROUTES ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADD CHARACTER ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			this.addChar = function() {
-				self.$http.post('/chars', {name: this.formCharName, strain: this.formCharStrain, backstory: this.formCharBackstory, imgurl: this.formCharimgURL}).then(function success(response) {
+				self.$http.post('/chars', {
+					name: this.formCharName,
+					strain: this.strainName,
+					mind: this.mind,
+					health: this.health,
+					infection: this.infection,
+					profession: this.profname,
+					skills: this.addedSkillsList,
+					adv: this.adv,
+					dis: this.dis,
+					imgurl: this.formCharimgURL,
+					backstory: this.formCharBackstory,
+				})
+
+// EMPTY FORM ========================================//
+				.then(function success(response) {
 					self.chars.push(response.data);
 					self.formCharName = '';
+					self.formCharStrain = '';
+					mind = 0;
+					health = 0;
+					infection = 0;
 					self.formCharimgURL = '';
 					self.formCharBackstory = '';
 
@@ -84,7 +295,19 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 // THEN SAVE CHARACTER ================================//
 			this.editChar = function() {
 				var id = this.formCharId;
-				self.$http.put('/chars/' + id, {name: this.formCharName, strain: this.formCharStrain, backstory: this.formCharBackstory, imgurl: this.formCharimgURL }).then(function success (response) {
+				self.$http.put('/chars/' + id, {
+					name: this.formCharName,
+					strain: this.strainName,
+					mind: this.mind,
+					health: this.health,
+					infection: this.infection,
+					profession: this.profName,
+					skills: this.addedSkillsList,
+					adv: this.adv,
+					dis: this.dis,
+					imgurl: this.formCharimgURL,
+					backstory: this.formCharBackstory,
+				}).then(function success (response) {
 					console.log(response);
 					self.getChars();
 
@@ -113,60 +336,12 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 				});
 			}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// CHARACTER BUILDER LOGIC /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-var buildSkillList = []
-
-this.addStrain = function(strain){
-	var strainName =  strain.name,
-			mind = strain.mind,
-			health = strain.health,
-			infection = strain.infection;
-
-	strain.self_teach.forEach(function(skill){
-		buildSkillList.push(skill)
-	});
-
-	console.log("addStrain provided: strain: " + strainName);
-	console.log("addStrain provided: mind: " + mind);
-	console.log("addStrain provided: health: " + health);
-	console.log("addStrain provided: infection: " + infection);
-	console.log("addStrain provided skills: " + buildSkillList)
-}
-
-this.buildChar = function(strainName){
-
-console.log("this.buildChar - building a character!");
-
-	var built = {
-		name: '',
-		strain: strainName,
-		mind: '',
-		health: '',
-		infection: '',
-		profession: [],
-		skills: [],
-		adv: '',
-		dis: [],
-		imgurl: '',
-		backstory: ''
-	}
-	console.log(built);
-}
-
 
 		}] // close drapp controller
 
 	} // close return object
 
 }) // close ngdrapp directive
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CUSTOM ANGULAR FILTERS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

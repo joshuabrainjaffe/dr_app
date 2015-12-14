@@ -69,6 +69,10 @@ module.exports = {
         cost: 3
         },
         {
+        name: 'Brewing',
+        cost: 3
+        },
+        {
         name: 'Fearful Glare',
         cost: 3
         },
@@ -262,7 +266,7 @@ module.exports = {
     play_if: "You want to play a crafter who reinforces strongholds and builds structures that offer powerful benefits to large groups of people. As an Engineer, you’re usually the first one called to build a barricade, and you’re quite capable with a weapon in each hand, but your real love is building structures that enhance the skills of your fellow survivors for months or years at a time. Of course, such big benefits also carry big costs, so you’ll often need to Chop, Scrounge and buy as much Scrap metal as you can, as well as keep in touch with local Merchants and Scavengers for your more exotic building materials."
     },
     {
-    name: 'Savenger',
+    name: 'Scavenger',
     skill_list:[
       {
       name: 'Analyze Creature',

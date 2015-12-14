@@ -1,21 +1,49 @@
 /* =======================================================================================================================================*/
-/* UNIVERSALE STYLING ====================================================================================================================*/
+/* UNIVERSAL =============================================================================================================================*/
 /* =======================================================================================================================================*/
 
 body {
 	background-color: black;
 	font-family: 'Special Elite', cursive;
+	color: white;
 }
 
-h2{
+#main {
+	position: absolute;
+	width: 92%;
+	height: 95vh;
+	left: 120px;
+	padding: 10px;
+	overflow: scroll;
+}
+
+p, h1, h2, h3, h4, h5, h5 {
 	margin: 0px;
+	padding: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+h1 {
+	text-align: center;
+}
+
+a {
+	color: #796054
+}
+
+a:hover{
+	color: #d7ac97;
+	text-decoration: none;
 }
 
 .btn {
-	background-color: #342924;
+	background-color: #342924;;
 	color: white;
 	border: none;
-	margin: 5px;
+	margin: 2px;
 	transition: all 250ms ease;
 }
 
@@ -30,8 +58,12 @@ h2{
 	color: white;
 }
 
+table {
+	width: 100%
+}
+
 /* =======================================================================================================================================*/
-/* SIDEBAR STYLING =======================================================================================================================*/
+/* SIDEBAR  ==============================================================================================================================*/
 /* =======================================================================================================================================*/
 
 #sidebar {
@@ -39,19 +71,21 @@ h2{
     top:0;
 		bottom:0;
 		left:0;
-    width: 80px;
+    width: 60px;
 		height: 200%;
 		padding: 1%;
     background-color: #342924;
 		background-image: url(/images/sidebar_bkgd.png);
+		background-size: cover;
 		background-position: right;
+		z-index: 2;
 }
 
 nav {
 	position: relative;
-	right: 170px;
-	top: 60px;
-	width: 400px;
+	right: 355px;
+	top: 260px;
+	width: 750px;
 	padding: none;
 	margin: none;
 	/*ROTATE EFFECT*/
@@ -71,25 +105,188 @@ nav .btn{
 	display: block;
 }
 
-nav h2{
+nav h3{
 	display: block;
+	color: black;
+}
+
+/* =======================================================================================================================================*/
+/* INTRO PAGE  ===========================================================================================================================*/
+/* =======================================================================================================================================*/
+
+.intro{
 	color: white;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Stardos Stencil', cursive;
-	margin: 0px;
-	padding: 0px;
+	text-align: center;
 }
 
 /* =======================================================================================================================================*/
-/* BODY STYLING ==========================================================================================================================*/
+/* STRAINS  ===============================================================================================================================*/
 /* =======================================================================================================================================*/
 
-#content-wrapper {
+.strain-thumb{
+	position: relative;
 	display: block;
-	padding: 16px 0 0 100px;
+	background-color: #d5d5d5;
+	background-size: cover;
+	border-radius: 10px;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	width: 30%;
+	height: 20vh;
+	color: black;
+	overflow: hidden;
 }
+
+.strain-full{
+	width: 100%;
+	height: 50vh;
+	overflow: scroll;
+}
+
+.strainTable{
+	margin: 10px 0px;
+}
+
+.strainTable td{
+	padding-right: 10px;
+	text-align: center;
+}
+
+.strainTable button{
+	height: 20px;
+	margin: 5px;
+}
+
+/* =======================================================================================================================================*/
+/* PROFESSIONS  ==========================================================================================================================*/
+/* =======================================================================================================================================*/
+
+.prof-thumb{
+	position: relative;
+	display: block;
+	background-color: #d5d5d5;
+	background-size: cover;
+	border-radius: 10px;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	width: 30%;
+	height: 13vh;
+	color: black;
+}
+
+.prof-full{
+	width: 100%;
+	height: 50vh;
+	overflow: scroll;
+}
+
+.profTable{
+	margin: 10px 0px;
+}
+
+.profTable td{
+	padding-right: 10px;
+}
+
+/* =======================================================================================================================================*/
+/* SKILLS  ===============================================================================================================================*/
+/* =======================================================================================================================================*/
+
+.skill-thumb{
+	position: relative;
+	display: block;
+	background-color: #d5d5d5;
+	background-size: cover;
+	border-radius: 10px;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	width: 30%;
+	height: 130px;
+	color: black;
+	overflow: visible;
+}
+
+.skill-full{
+	width: 62%;
+	height: 43vh;
+	overflow: scroll;
+}
+
+.skillCheat{
+	width: 100%;
+	height: 100vh
+}
+/* =======================================================================================================================================*/
+/* BUILD  ================================================================================================================================*/
+/* =======================================================================================================================================*/
+
+.your{
+	position: relative;
+	width: 300px;
+	right: 130px;
+	top: 130px;
+	/*height: 200px;*/
+	/*ROTATE EFFECT*/
+	/* Safari */
+	-webkit-transform: rotate(90deg);
+	/* Firefox */
+	-moz-transform: rotate(90deg);
+	/* IE */
+	-ms-transform: rotate(90deg);
+	/* Opera */
+	-o-transform: rotate(90deg);
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
+}
+
+#build {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: 40px;
+  height: 90vh;
+  text-align: center;
+  background: #fffefc;
+	background-image: url(/images/build_bkgd.png);
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  border-radius: 10px 0 0 10px;
+	color: #342924;
+	z-index: 2;
+}
+
+#build_inner {
+  position: fixed;
+  top: 64px;
+  right: -80%;
+  background: #fffefc;
+	background-image: url(/images/build_bkgd.png);
+	background-size: cover;
+  width: 700px;
+  padding: 25px;
+  height: 90vh;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  text-align: left;
+	color: #342924;
+	overflow: scroll;
+	z-index: 2
+}
+
+#build:hover #build_inner {
+  right: 0;
+}
+
+/* =======================================================================================================================================*/
+/* CHARACTER LIST  =======================================================================================================================*/
+/* =======================================================================================================================================*/
 
 .char-thumb{
 	position: relative;
@@ -117,9 +314,15 @@ h1, h2, h3, h4, h5, h6 {
 	color: white;
 }
 
+.modal-content{
+	background: #fffefc;
+	background-image: url(/images/build_bkgd.png);
+	background-size: cover;
+	color: #342924;
+}
 
 /* =======================================================================================================================================*/
-/* FORM STYLING =========================================================================================================================*/
+/* FORM  ================================================================================================================================*/
 /* =======================================================================================================================================*/
 
 input{
@@ -141,96 +344,21 @@ input{
 }
 
 /* =======================================================================================================================================*/
-/* STRAIN STYLING ========================================================================================================================*/
+/* FOOTER ================================================================================================================================*/
 /* =======================================================================================================================================*/
 
-.strain-thumb{
-	position: relative;
-	display: block;
-	background-color: #d5d5d5;
-	background-size: cover;
-	border-radius: 10px;
-	float: left;
-	margin: 10px;
-	padding: 10px;
-	width: 30%;
-	height: 20vh;
-	color: black;
-	overflow: hidden;
+footer{
+	display: inline;
+	position: absolute;
+	background-color: black;
+	width: 100%;
+	left: 120px;
+	bottom: 0px;
+	padding: 6px;
+	text-align: center;
 }
 
-.strainTable{
-	margin: 10px 0px;
-}
-.strainTable td{
-	padding-right: 10px;
-}
-
-.strainMode h2, h3, h4, h5{
-	font-weight: 700;
-}
-
-/* =======================================================================================================================================*/
-/* BUILD STYLING =========================================================================================================================*/
-/* =======================================================================================================================================*/
-
-.your{
-	position: relative;
-	width: 200px;
-	right: 80px;
-	top: 80px;
-	/*height: 200px;*/
-	/*ROTATE EFFECT*/
-	/* Safari */
-	-webkit-transform: rotate(90deg);
-	/* Firefox */
-	-moz-transform: rotate(90deg);
-	/* IE */
-	-ms-transform: rotate(90deg);
-	/* Opera */
-	-o-transform: rotate(90deg);
-	/* Internet Explorer */
-	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
-}
-
-#build {
-  position: fixed;
-  top: 40px;
-  right: 0;
-  width: 50px;
-  height: 90vh;
-  padding: 12px 0;
-  text-align: center;
-  background: #fffefc;
-	background-image: url(/images/build_bkgd.png);
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  border-radius: 10px 0 0 10px;
-}
-
-#build_inner {
-  position: fixed;
-  top: 40px;
-  right: -80%;
-  background: #fffefc;
-	background-image: url(/images/build_bkgd.png);
-	background-size: cover;
-  width: 80%;
-  padding: 25px;
-  height: 90vh;
-  -webkit-transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  text-align: left;
-  border-radius: 10px 0 0 10px;
-}
-
-#build:hover {
-  right: 250px;
-}
-#build:hover #build_inner {
-  right: 0;
+footer p{
+	width: 90%;
+	font-size: .75em;
 }
