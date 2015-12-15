@@ -11,7 +11,8 @@ var CharSchema = mongoose.Schema({
 	adv: Array,
 	dis: Array,
 	imgurl: String,
-	backstory: String
+	backstory: String,
+	user : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 })
 
 var Char =  mongoose.model('Char', CharSchema);
