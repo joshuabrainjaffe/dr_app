@@ -1,3 +1,4 @@
+console.log("app.js");
 var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 
 	return {
@@ -24,9 +25,7 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 				// ajax get request to /dystopia - from dr_app.js API
 				self.$http.get('/dystopia').then(function(response) {
 					self.dystopia = response.data;
-
 				});
-
 			};
 
 			self.getDystopia()

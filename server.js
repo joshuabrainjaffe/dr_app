@@ -2,12 +2,16 @@
 // Requirements
 // =============================
 var express = require('express'),
-	app = express(),
-	port = process.env.PORT || 3000,
-	logger = require('morgan'),
-	mongoose = require('mongoose'),
-	bodyParser = require('body-parser');
-
+		app = express(),
+		port = process.env.PORT || 3000,
+		logger = require('morgan'),
+		mongoose = require('mongoose'),
+		bodyParser = require('body-parser'),
+		passport = require('passport'),
+		flash    = require('connect-flash'),
+		morgan       = require('morgan'),
+		cookieParser = require('cookie-parser'),
+		session      = require('express-session');
 
 // =============================
 // Middleware
@@ -18,16 +22,34 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('public'));
 
 
+
+// set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+
+app.set('view engine', 'ejs'); // set up ejs for templating
+
+// required for passport
+app.use(session({ secret: 'kenderpumper' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+// routes ======================================================================
+require('./config/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
 // =============================
 // DB
 // =============================
 mongoose.connect('mongodb://localhost/dr_app');
 
+require('./config/passport.js')(passport); // pass passport for configuration
 
 // =============================
 // Models
 // =============================
 var Book = require('./models/char.js');
+// var User = require('./models/user.js');
 
 // =============================
 // Homemade API
