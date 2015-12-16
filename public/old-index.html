@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html ng-app="DRApp" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>character database</title>
+
+<!-- BOOSTRAP CSS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+<!-- CSS /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+<!-- FONTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+
+<!-- ANGULAR /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<!-- JQUERY //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<!-- BOOTSTRAP JS/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- MY JS FILE //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<script type="text/javascript" src="js/app.js"></script>
+
+</head>
+
+<body>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- SIDEBAR /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+  <div id="sidebar">
+		<nav>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-9"><h3>Dystopia Rising Character Creator<h3></div>
+			</div>
+		</nav>
+	</div>
+
+	<ngdrapp>
+		<div id="main">
+
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- INTRO PAGE //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+			<div class="intro" ng-hide="introHide">
+				<p> Use this tool to help you build a new Dystopia Rising Character!<br>
+					You will choose a Strain, Profession, Skills, add Mind or Body and finally add a name and a backstory!<br>
+					Click the button below to get started!<br>
+
+				<button class="btn btn-default" ng-click="strainShow = !strainShow; introHide = !introHide; buildShow = !buildShow" onclick="this.blur()">
+					Start New Character
+				</button>
+				<button class="btn btn-default" ng-click="charListShow = !charListShow"onclick="this.blur()">See Full Character List</button>
+				<br>
+			</div>
+
+			<div class="lists">
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- STRAIN LIST /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+				<div ng-show="strainShow">
+					<h1>Step 1: Choose a Strain</h1>
+					<div ng-repeat="strain in drapp.dystopia.strains | orderBy : 'name'">
+						<div class="strain-thumb" ng-class="{'strain-full' : full}">
+
+	<!-- Basic stats ---------------------->
+							<h3>{{ strain.name }}</h3>
+							<table class="strainTable">
+								<tr>
+									<td><h4>Mind</h4></td>
+									<td><h4>Health</h4></td>
+									<td><h4>Infection</h4></td>
+								</tr>
+								<tr>
+									<td><h4>{{ strain.mind }}</h4></td>
+									<td><h4>{{ strain.health }}</h4></td>
+									<td><h4>{{ strain.infection }}</h4></td>
+								</tr>
+							</table>
+
+	<!-- Description and requirements ---------------------->
+							<div ng-show="show">
+								<h4>Description </h4>
+								<p ng-bind-html="strain.desc | unsafe"></p><br>
+								<h4>Requirement </h4>
+								<p ng-bind-html="strain.req | unsafe"></p><br>
+
+	<!-- Self-teach skills ---------------------->
+								<h4>Skills (Can be self-taught for 3 Build)</h4>
+								<div ng-repeat="skill in strain.self_teach | orderBy : 'name'">
+									<p>{{ skill.name }}</p>
+								</div>
+								<br>
+
+	<!-- Ads and Disads ---------------------->
+								<h4>Advantage</h4>
+								<h5>{{ strain.adv.name }}</h5>
+								<p>{{ strain.adv.desc }}</p><br>
+
+								<h4>Disadvantages: </h4>
+								<div ng-repeat="dis in strain.dis | orderBy : 'name'">
+									<h5>{{ dis.name }}</h5>
+									<p>{{ dis.desc }}</p><br>
+								</div>
+							</div>
+
+	<!-- Shide/show button ---------------------->
+							<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
+								<span ng-hide="show">show more</span>
+								<span ng-show="show">hide<span>
+							</button>
+							<button ng-click="drapp.addStrain(strain); $parent.strainShow = !strainShow; $parent.profShow = !profShow" ng-model="drapp.formStrain" class="btn btn-sm">
+								choose {{ strain.name }}
+							</button>
+
+						</div>
+
+					</div><!-- close ng-repeat strain in drapp.dystopia.strains -->
+				</div>
+
+	<!----------------------------------------------------------------------------------------------------------------------------------------->
+	<!-- PROFESSION LIST /////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+				<div ng-show="profShow">
+					<h1>Step 2: Choose a Profession</h1>
+					<div ng-repeat="prof in drapp.dystopia.professions | orderBy : 'name'">
+						<div class="prof-thumb" ng-class="{'prof-full' : full}">
+
+	<!-- Prof name ---------------------->
+							<h3>{{ prof.name }}</h3><br>
+
+							<div ng-show="show">
+								<table class="table-striped strainTable">
+									<tr>
+										<td><h4>Skill Name</h4></td>
+										<td><h4>Cost</h4></td>
+										<td><h4>Prequisites</h4></td>
+									</tr>
+									<tr ng-repeat="skill in prof.skill_list | orderBy : 'name'">
+												<td><p>{{ skill.name }}</p></td>
+												<td><p>{{ skill.cost }}</p></td>
+												<td ng-repeat="prereq in skill.prereq"><p>{{ prereq }}</p></td>
+												<td></td>
+									</tr>
+								</table>
+
+							<br>
+
+	<!-- Bio and Play If... ---------------------->
+								<h4>Bio </h4>
+								<p ng-bind-html="prof.bio | unsafe"></p><br>
+								<h4>Play {{ prof.name }} a if... </h4>
+								<p ng-bind-html="prof.play_if | unsafe"></p><br>
+							</div>
+
+	<!-- hide/show button ---------------------->
+							<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
+								<span ng-hide="show">show more</span>
+								<span ng-show="show">hide<span>
+							</button>
+							<button ng-click="drapp.addProfession(prof); $parent.profShow = !profShow; $parent.skillShow = !skillShow" ng-model="drapp.formProf" class="btn btn-sm">
+								choose {{ prof.name }}
+							</button>
+
+						</div>
+
+					</div><!-- close ng-repeat profession in drapp.dystopia.professions -->
+
+				</div>
+
+	<!----------------------------------------------------------------------------------------------------------------------------------------->
+	<!-- SKILL LIST //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+				<div ng-show="skillShow">
+
+					<h1>Step 3: Choose Your Skills</h1>
+					<div ng-repeat="skill in drapp.finalSkillList | orderBy : 'name'; track by $index">
+
+						<div class="skill-thumb" ng-class="{'skill-full' : full}" ng-hide="skillHide">
+
+		<!-- Skill name and cost ---------------------->
+							<h3>{{ skill.name }}</h3>
+							<h4>Cost: {{ skill.cost }} </h4>
+
+		<!-- Skill description ---------------------->
+							<div ng-show="show">
+								<br>
+								<p ng-bind-html="skill.desc | unsafe"></p>
+							</div>
+
+		<!-- hide/show button ---------------------->
+							<button class="btn btn-sm" ng-click="show = !show; full = !full" onclick="this.blur()">
+								<span ng-hide="show">show more</span>
+								<span ng-show="show">hide<span>
+							</button>
+							<br>
+							<button ng-click="drapp.addSkill(skill); skillHide = !skillHide" ng-model="drapp.formSkill" class="btn btn-sm">
+								choose {{ skill.name }}
+							</button>
+
+						</div>
+
+					</div><!-- close ng-repeat skill in drapp.skillList -->
+
+				</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- CHARACTER LIST //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+
+				<div ng-show="charListShow">
+
+					<h1>Your Character List</h1>
+
+					<div id="chars-container" ng-repeat="char in drapp.chars | orderBy : 'name'">
+
+						<div class="char-thumb" ng-class="{'char-full' : full}" ng-style="{'background-image':'url({{char.imgurl}})'}">
+							<div class="char-info">
+								<h5>Name</h5>
+								<p>{{ char.name }}</p>
+								<br>
+								<h5>Strain</h5>
+								<p>{{ char.strain }}</p>
+								<br>
+								<h5>Profession</h5>
+								<p>{{ char.profession }}</p>
+								<br>
+								<span ng-show="show">
+								<table class="strainTable">
+									<tr>
+										<td><h4>Mind</h4></td>
+										<td><h4>Health</h4></td>
+										<td><h4>Infection</h4></td>
+									</tr>
+									<tr>
+										<td><h4>{{ char.mind }}</h4></td>
+										<td><h4>{{ char.health }}</h4></td>
+										<td><h4>{{ char.infection }}</h4></td>
+									</tr>
+								</table>
+								<br>
+								<div class="build-skills" ng-repeat="skill in char.skills">
+									<h4>{{skill.name}}</h4>
+									<br>
+									<h5>Build Cost: {{skill.cost}}</h5>
+									<h5>Mind Point Cost: {{skill.mp}}</h5>
+									<br>
+									<p ng-bind-html="skill.desc | unsafe"></p>
+									<br><br>
+								</div>
+								<br>
+								<h4>Backstory: </h4><p class="backstory">{{ char.backstory }}</p>
+									<button class="btn btn-sml" data-toggle="modal" data-target="#editModal" ng-click="drapp.populateForm(char);" onclick="this.blur()">
+										edit
+									</button><p class="bedit">Note: once a chracter is made you can only edit their name, backstory and add an image URL.</p>
+									<button class="btn btn-sml" ng-click="drapp.deleteChar(char)" onclick="this.blur()">delete</button>
+								</span>
+								<br>
+								<button class="btn btn-sml" ng-click="show = !show; full = !full" onclick="this.blur()">
+									<span ng-hide="show">show</span>
+									<span ng-show="show">hide<span>
+								</button>
+								<br>
+
+							</div>
+						</div>
+					</div> <!-- close ng-repeat char in drapp.chars -->
+
+				</div>
+
+			</div><!-- lists -->
+
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+<!-- CHARACTER BUILD SIDEBAR ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!----------------------------------------------------------------------------------------------------------------------------------------->
+			<div ng-show="buildShow">
+
+				<div id="build">
+				  <h4 class="your">Current Build: {{ drapp.buildPoints }} Points</h4>
+			    <div id="build_inner">
+						<form class="new_char_form">
+							<h3>Current Build: {{ drapp.buildPoints }} Points</h3>
+							<br>
+							<h4>Name</h4>
+							<input type="text" ng-model="drapp.formCharName" placeholder="Name this character">
+							<br><br>
+							<h4>Strain</h4>
+							<p ng-model="drapp.formCharStrain">{{drapp.strainName}}</p>
+							<br>
+							<table class="strainTable">
+								<tr>
+									<td><h4>Mind</h4></td>
+									<td><h4>Health</h4></td>
+									<td><h4>Infection</h4></td>
+								</tr>
+								<tr>
+									<td>
+										<button ng-click="drapp.addMind()" class="btn-xs">+</button>
+										<br>
+										<h3>{{ drapp.mind }}</h3>
+										<button ng-click="drapp.subtractMind()" class="btn-xs">-</button>
+									</td>
+									<td>
+										<button ng-click="drapp.addHealth()" class="btn-xs">+</button>
+										<br>
+										<h3>{{ drapp.health }}</h3>
+										<button ng-click="drapp.subtractHealth()" class="btn-xs">-</button>
+									</td>
+									<td>
+										<h3>{{ drapp.infection }}</h3>
+									</td>
+								</tr>
+							</table>
+							<br>
+							<h4>Profession</h4>
+							<p ng-model="drapp.formCharProfession">{{drapp.profName}}</p>
+							<br>
+							<h4>Skills</h4>
+							<br>
+							<div class="build-skills" ng-repeat="skill in drapp.addedSkillsList">
+								<h4>{{skill.name}}</h4>
+								<br>
+								<h5>Build Cost: {{skill.cost}}</h5>
+								<h5>Mind Point Cost: {{skill.mp}}</h5>
+								<button ng-click="drapp.removeSkill(skill)" ng-model="drapp.formSkill" class="btn btn-xs">
+									remove {{ skill.name }}
+								</button>
+								<br><br>
+							</div>
+
+							<h4>Backstory</h4>
+							<textarea name="Text1" ng-model="drapp.formCharBackstory" class="backstory-input" placeholder="What is this character's story?"></textarea><br>
+						</form>
+					  <button ng-click="drapp.addChar(); introHide = !introHide; buildShow = !buildShow; skillShow = !skillShow" class="btn-sm">Save Character</button>
+			    </div>
+				</div>
+
+			</div>
+
+<!-- EDIT CHARACTER MODAL ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+			<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+							<h3 class="modal-title" id="myModalLabel">edit character</h3>
+			      </div>
+			      <div class="modal-body">
+							<form>
+								<h4>Name</h4>
+								<input type="text" ng-model="drapp.formCharName"><br><br>
+								<h4>Image URL</h4>
+								<input type="text" ng-model="drapp.formCharimgURL"><br><br>
+								<h4>Backstory</h4><br>
+								<textarea name="Text1" cols="40" rows="5" ng-model="drapp.formCharBackstory" class="backstory-input"></textarea>
+							</form>
+			      </div>
+			      <div class="modal-footer">
+			        <button class="btn" data-dismiss="modal" >close</button>
+							<button ng-click="drapp.editChar()" class="btn" data-dismiss="modal" >save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		</div><!-- End of main -->
+
+	</ngdrapp><!-- End of content-wrapper -->
+
+	<footer>
+		<p>Dystopia Rising is a trademark of Michael Pucci.
+			<br>
+			Dystopia Rising rules, published content , and materials are Copyright Dystopia Rising LLC 2008,2009,2011, 2013, 2014, 2015. All rights reserved.
+		<br>
+		<a href="http://www.dystopiarising.com" target="_blank">www.dystopiarising.com</a> Dystopia Rising LLC PO Box 8504 New Haven CT 06531</p>
+	</footer>
+</body>
+</html>
