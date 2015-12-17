@@ -7,6 +7,7 @@ body {
 	background-image: url(/images/main_bkgd.jpg);
 	background-size: cover;
 	background-position: top;
+	background-repeat: no-repeat;
 	font-family: 'Special Elite', cursive;
 	color: white;
 }
@@ -14,9 +15,8 @@ body {
 #main {
 	position: absolute;
 	width: 100%;
-	height: 95vh;
-	left: 50px;;
-	padding: 10px;
+	height: 93vh;
+	left: 50px;
 	overflow: scroll;
 }
 
@@ -32,7 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	text-align: center;
 }
-
 a {
 	color: #796054
 }
@@ -67,9 +66,19 @@ table {
 
 .lists{
 	position: relative;
-	width: 90%;
+	padding: 50px;
 }
 
+.main-title {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.90);
+	color: white;
+	width: 100%;
+	height: 6vh;
+	top: 0px;
+	right: 0px;
+	padding: 5px;
+}
 /* =======================================================================================================================================*/
 /* SIDEBAR  ==============================================================================================================================*/
 /* =======================================================================================================================================*/
@@ -86,14 +95,14 @@ table {
 		background-image: url(/images/sidebar_bkgd.png);
 		background-size: cover;
 		background-position: right;
-		z-index: 2;
+		z-index: 3;
 }
 
 nav {
 	position: relative;
-	right: 355px;
-	top: 260px;
-	width: 750px;
+	right: 380px;
+	top: 10px;
+	width: 800px;
 	padding: none;
 	margin: none;
 	/*ROTATE EFFECT*/
@@ -123,29 +132,29 @@ nav h3{
 /* =======================================================================================================================================*/
 
 .intro{
-	position: relative;
-	background-color: rgba(0, 0, 0, 0.75);
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.90);
 	color: white;
 	text-align: center;
 	width: 100%;
-	height: 25vh;
-	top: -20px;
-	padding-top: 50px;
+	height: 15vh;
+	padding: 10px;
+	z-index: 2;
 }
 
 /* =======================================================================================================================================*/
 /* STRAINS  ===============================================================================================================================*/
 /* =======================================================================================================================================*/
 
-.strain-thumb{
+.thumb{
 	position: relative;
 	display: block;
-	background-color: #d5d5d5;
+	background-color: rgba(213, 213, 213, 0.9);
 	background-size: cover;
 	border-radius: 10px;
 	float: left;
 	margin: 10px;
-	padding: 10px;
+	padding: 20px;
 	width: 30%;
 	height: 20vh;
 	color: black;
@@ -153,9 +162,15 @@ nav h3{
 }
 
 .strain-full{
-	width: 100%;
+	width: 92%;
 	height: 50vh;
 	overflow: scroll;
+}
+
+.strainpic{
+	position: relative;
+	float: right;
+
 }
 
 .strainTable{
@@ -176,22 +191,8 @@ nav h3{
 /* PROFESSIONS  ==========================================================================================================================*/
 /* =======================================================================================================================================*/
 
-.prof-thumb{
-	position: relative;
-	display: block;
-	background-color: #d5d5d5;
-	background-size: cover;
-	border-radius: 10px;
-	float: left;
-	margin: 10px;
-	padding: 10px;
-	width: 30%;
-	height: 13vh;
-	color: black;
-}
-
 .prof-full{
-	width: 100%;
+	width: 92%;
 	height: 50vh;
 	overflow: scroll;
 }
@@ -207,21 +208,6 @@ nav h3{
 /* =======================================================================================================================================*/
 /* SKILLS  ===============================================================================================================================*/
 /* =======================================================================================================================================*/
-
-.skill-thumb{
-	position: relative;
-	display: block;
-	background-color: #d5d5d5;
-	background-size: cover;
-	border-radius: 10px;
-	float: left;
-	margin: 10px;
-	padding: 10px;
-	width: 30%;
-	height: 130px;
-	color: black;
-	overflow: visible;
-}
 
 .skill-full{
 	width: 62%;
@@ -269,6 +255,7 @@ nav h3{
   -moz-transition-duration: 0.3s;
   transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
+	border: 2px solid black;
   border-radius: 10px 0 0 10px;
 	color: #342924;
 	z-index: 2;
@@ -277,17 +264,19 @@ nav h3{
 #build_inner {
   position: fixed;
   top: 64px;
-  right: -80%;
+  right: -90%;
   background: #fffefc;
 	background-image: url(/images/build_bkgd.png);
 	background-size: cover;
-  width: 700px;
+  width: 90%;
   padding: 25px;
   height: 90vh;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
+	border: 2px solid black;
+	border-radius: 10px 0 0 10px;
   text-align: left;
 	color: #342924;
 	overflow: scroll;
@@ -305,12 +294,11 @@ nav h3{
 .char-thumb{
 	position: relative;
 	display: block;
-	background-color: #d5d5d5;
-	background-size: cover;
+	background-color: rgba(213, 213, 213, 0.9);
 	border-radius: 10px;
 	float: left;
 	margin: 10px;
-	padding: 10px;
+	padding: 20px;
 	width: 45%;
 	color: black;
 	/*text-shadow: 2px 2px 4px white;*/

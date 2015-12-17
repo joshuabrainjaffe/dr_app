@@ -1,10 +1,11 @@
 module.exports = {
   strains:[
     {
-      name: 'Merican',
-      health: 13,
+      name: 'Diesel Jock',
+      health: 10,
       mind: 10,
-      infection: 2,
+      infection: 3,
+      img:'/images/strains/dieseljock.png',
       self_teach:[
         {
         name: 'Bolt-Action',
@@ -33,6 +34,57 @@ module.exports = {
       ],
       adv:
         {
+        name: 'Need of Food',
+        desc: "While the Trade Ties skill traditionally only allows Scrap to be traded for Herb, with the circles that Diesel Jocks travel in it is easier to trade Herbs for Scrap. At check in, a Diesel Jock may use the Trade Ties skill (if they have it) to trade Herb to Scrap at the same levels and restrictions as normally can be traded Scrap for Herb. Use of this Skill requires the Diesel Jock to have access to their own crafted land vehicle, or, pay 5 Herbs per Scrap of the same level, the additional difference required to ‘bribe other Diesel Jocks’ to hitch a ride to swap meets."
+        },
+      dis:[
+        {
+        name: 'Road Bound',
+        desc: "Due to their constantly moving nature, Diesel Jocks have a difficult time investing in locations long enough to generate a profit.  In the instance that a Diesel Jock takes the skill Income, they will receive finances equal to two levels LESS than what they currently have.  (Level 1 produces zero, Level 2 produces zero, Level 3 produces 1, Level 4 produces 3, Level 5 produces 6)"
+        },
+        {
+        name: 'Endless Miles of Road',
+        desc: "Diesel Jocks have a unique culture that sets aside many things that you find in ‘civilized communities’.  Due to this lifestyle to the road Diesel Jocks are banned from ever having the professions Farmer, Politician, or Publican."
+        }
+      ],
+      restricted_profs:['Farmer', 'Politician', 'Publican'],
+      desc: "The society of the Diesel Jock is one of daredevil speed freaks, ruthless nomads, and itinerant tribal communities who have taken the Rules of the Road as the scriptures for their life.  Focused on survival, family, and remaining on the move, it is not surprising that many Diesel Jock clans have concentrated on supply trading, gun running, mercenary protection rackets, and even highway robbery.  Life within the Diesel Jock community focuses on the creation, care, and preservation of the vehicles and the individual, in that order.<br><br>With life on the road being what it is, Diesel Jock youth are trained in the repair and care of the Rides often before they learn to read or fight.  Children younger than ten know how to bend Scrap and twist metal to replicate simple combustion engine pieces, and by the time a child is knee high to a moped they know how to operate a basic Forge for engine design and drive shaft production.  Once a child is old enough to test for their rites of adulthood, they are brought to their tribe's ancestral Scrap yards. The child will be provided food and drink, but is expected to craft their own tools and forge from the Scraps so that they may build their own Ride.<br><br>Diesel Jocks aren’t as warm and friendly as their Rover cousins. They can be mean, violent, and fiercely insular, but they’re also fanatically loyal and share the ideal of “my word is my bond” with their traveling counterparts. Anyone who crosses a Diesel Jock had better be prepared to deal with the whole clan. However, they can also be incredibly cold and cruel. Every Diesel Jock has a story of leaving behind a beloved clan member who had lost his or her Ride, likely to die alone in the Ruined Earth. It’s not cruel; it’s a sad necessity of life in the clan.<br><br>The vehicle (called a Ride) is the central element of a Diesel Jock’s life. When a young clan member reaches twelve years of age, he or she is presented with a working engine and taken to the “Sacred Scrapyards,” one of a dozen fiercely protected sites in the Southwest that is an endless junkyard of car parts. (The location of these yards is guarded from other scavengers and looters on pain of death.) It is expected that in the yard the child will find a vehicle in which they might install the engine or simply create a new vehicle piecemeal. When the child emerges with the new vehicle, there’s a huge feast and party in the child's honor. The new Ride is christened with a name and the owner presented with gifts of parts and decor from other prominent vehicles in the clan.<br><br>Of course, not all Diesel Jocks can drive. Those who are excused from driving duties include children, the elderly, pregnant women, and those who have been injured in defense of the Clan. These passengers usually ride in a heavily armored van, bus or modified trolleycar. It is considered a great honor to drive the passengers, a task usually reserved for the matriarch or patriarch of a clan. The rite of passage called “Moving to the Back of the Bus” is reserved for the oldest and wisest of the Clan. What few survive to an advanced age are presented with a ceremonial map and a pair of glasses, and guide the clan as a Backseat Driver.",
+      req: "Diesel Jocks are often adorned with weapons, armor, and equipment refitted from unfixable components of their rides.  They use broken drive shafts as weapons, sections of stripped metal as armor, and broken motor parts as jewelry.  Diesel Jocks dress in more savage clothing than their civilized Rover cousins, wearing slapped together metal armor and leathers designed to protect and intimidate would be bandits or raiders.  On the road the average Diesel Jock could be visually mistaken for a Raider at a glance. Diesel Jocks adorn themselves with banded line tattoos that cover their hands and forearms.  Each ring represents a full ‘road rally’ completed around the wastelands- a multiple year trip that starts and ends in the same destination.  These road rallies take years to complete.<br<br>Diesel Jocks never bring their vehicles into settlements, instead keeping their rides hidden at least a day’s walk outside of town.",
+    },
+    {
+      name: 'Merican',
+      health: 13,
+      mind: 10,
+      infection: 2,
+      img:'/images/strains/merican.png',
+      self_teach:[
+        {
+        name: 'Balance',
+        cost: 3
+        },
+        {
+        name: 'Bolt-Action',
+        cost: 3
+        },
+        {
+        name: 'Forging The Future',
+        cost: 3
+        },
+        {
+        name: 'Patchjob',
+        cost: 3
+        },
+        {
+        name: 'Trade Ties',
+        cost: 3
+        },
+        {
+        name: 'Melee Weapon, Standard',
+        cost: 3
+        }
+      ],
+      adv:
+        {
         name: 'Merican Mob',
         desc: "Mericans have a tendency to celebrate in unruly numbers. Mericans gathered in celebration may regain 10 Health Points per half hour of celebration as long as five Mericans are part of the celebration and each has consumed at least one brewed item (requires Brew card)."
         },
@@ -55,6 +107,7 @@ module.exports = {
       health:6,
       mind:6,
       infection:6,
+      img:"./images/strains/redstar.png",
       self_teach:[
         {
         name: 'Avoid',
@@ -341,6 +394,83 @@ module.exports = {
     ],
     bio: "They are the brave new world, the unsung heroes of settlement and caravan alike. They are the future, surviving on the bones of the past. Scrappers, Gatherers, Trash-Pickers. Scavengers eke out their living through an uncanny knack for finding and exploiting the useful pieces of a wasted world. They survive at all costs, and at all costs provide. Without the tireless efforts of the Scavenger, the guns have no ammo, the builders no Scrap, the medics no medicine, and the world no chance.",
     play_if: "You want to be capable of pulling valuable raw materials out of just about any situation. As a Scavenger, you can chop weapons for Scrap and pick up Herbs and metal you scrounge in the wild, so make sure you spend plenty of time out searching for raw materials and always be quick to salvage the weapons of fallen enemies. It’s dangerous to go alone, though, so make sure you bring friends on your scrounging runs, and make note of the spots you make big finds. Most any craftsman has a need for the goods you provide, so introduce yourself around and let them know when you’re selling."
+    },
+    {
+    name: 'Soldier',
+    skill_list:[
+      {
+      name: 'Avoid',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Break Shield',
+      cost: 6,
+      prereq:[]
+      },
+      {
+      name: 'Charge',
+      cost: 6,
+      prereq:[]
+      },
+      {
+      name: 'Double Tap',
+      cost: 6,
+      prereq:[]
+      },
+      {
+      name: 'Florentine',
+      cost: 6,
+      prereq:[]
+      },
+      {
+      name: 'Force Barricade',
+      cost: 6,
+      prereq:['Charge']
+      },
+      {
+      name: 'Interfere',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Melee Weapon Expert',
+      cost: 6,
+      prereq:['Melee Weapon, Standard', 'Melee Weapon, Large']
+      },
+      {
+      name: 'Melee Weapon, Large',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Melee Weapon, Standard',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Nail',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Sever',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Shield',
+      cost: 3,
+      prereq:[]
+      },
+      {
+      name: 'Throwing, Javelins',
+      cost: 3,
+      prereq:[]
+      }
+    ],
+    bio: "This is a world where the only means if ensuring your own safety is through military force. Trained in both ranged and close combat and operating with greater coordination and discipline than Thugs, Guards and other amateur warriors, it is on the blood, sweat, and tears of Soldiers that the new world will be built.",
+    play_if: "You want to be a well-balanced melee bad-ass, equally at home with two weapons as you are with a weapon and shield. As a Soldier, you are one of the most versatile melee fighters around, with a mix of offensive and defensive skills that you can tailor to suit your fighting preferences or even switch up to meet the needs of the moment. You make a mess of shield walls, you cut down soft targets easily, you can take down fortified doors in a hurry and you can make sure even the toughest zombies don’t get up a second time. In short, Soldier, you are the heart of the line, so stand strong and let your example inspire the wannabe warriors around you."
     }
   ],
   skills:[
@@ -353,6 +483,11 @@ module.exports = {
     name: 'Avoid',
     mp: '5',
     desc: "This Skill counters Concentrated Fire, Destroy Shield, Destroy Weapon, Disarming Shot, Scatter Shot, Sniped Shot, Knockout, and any other successful, ranged targeted attacks. In order to use this skill, spend 5 Mind Points and clearly say “Avoid!” This skill is ineffective against Area of Effect attacks (such as bombs or “By My Voice” effects), as they do not target the user individually."
+    },
+    {
+    name: 'Balance',
+    mp: '1 or 5',
+    desc: "This Skill counters Knockdown and Take Down. By spending 5 Mind Points, you can call “Balance” and ignore one use of either Knockdown or Take Down. In addition, in situations such as walking across narrow paths, this Skill allows the user to receive one foot additional width on either side to represent their great sense of balance. Balance costs 1 Mind Point per use, and lasts for 10 paces or 1 minute, whichever comes first."
     },
     {
     name: 'Barricade',
@@ -380,9 +515,19 @@ module.exports = {
     desc: "Sometimes you just need to punch something. This Skill allows you to carry two small size melee boffers to represent fists. These boffers must be colored white to differentiate them from regular weapons. Damage is still taken when blocking incoming strikes, as they are part of the body. However, use of two brawling boffers does not require the Florentine skill, and they cannot be disarmed or broken like normal weapons (though the arm can still be Mangled).  Brawling may be used off hand of a melee or bolt action weapon, with a brawling beater being wielded in the off hand.  Effects such as ‘Iron Fists’ require a brawling physical representation to be in a characters hand to benefit from the bonuses of Knucks or brawling Skill augments.  Brawling strikes do a base 1 damage each. Brawling can be augmented with items such as brass knuckles, usually just called “Knucks,” which are represented by certain colored tape.  Unless otherwise stated on the crafting print, Knucks do not block incoming damage.  Only Iron Fists allows an individual to block using their Brawling Skill without taking damage."
     },
     {
+    name: 'Break Shield',
+    mp: '5',
+    desc: "This Skill can be countered by Parry. With a single successful melee attack that strikes a shield, you can declare “Break Shield!” and render a shield useless until it is repaired. This attack costs 5 Mind Points, inflicts zero damage, and must strike the target shield to work."
+    },
+    {
     name: 'Brewing',
     mp: 'Variable',
     desc: "This Skill allows a character to distill powerful liquids from Herbs that have a variety of unique effects. By spending 2 Mind Points and 20 Minutes at a Still roleplaying brewing, the crafter may take the required Herb cards to Logistics to be traded in for a new Item Card. All brews start at Crafts Level 1 unless otherwise specified and have an expiration of 1 year. Crafting requires 2 hands, and can be interrupted if the crafter leaves the area within 5 feet of the Still, utilizes any combat Skills, or falls into Bleed Out. If the process is interrupted, all Mind Points spent and materials invested are lost. Some abilities or items may reduce the time requirement for Brewing. The minimum time for Brewing, without the assistance of an Able Helper, is 5 minutes.<br><br>All brews, once produced, require an appropriately sized physical representation to be used (as near a volume as possible). Brews can be administered one of four ways. Applied to target, Inhaled by target, Ingested by target, or Injected into target. Applied Brews may only be applied to an appropriate target, such as an item, person, or weapon. Applied brews that require a weapon strike do not affect armored health. Injectable brews may be self-administered during Bleed Out. Injected and ingested brews may not be administered to an unwilling target that is not Bound, Knocked Out, or in Bleed Out. Note that this does not prevent an unaware target from consuming a brew themselves.<br><br>During the process of production a player may only use one item to manipulate crafting times or production results unless the used items specifically state that they stack with other items."
+    },
+    {
+    name: 'Charge',
+    mp: '5',
+    desc: "This Skill can be countered by Parry if you strike the person from the front. Rushing into battle isn’t always a bad thing. By declaring “Charge!” and expending 5 Mind Points, your first strike against a new target has its damage doubled. Charge may only be used the first time engaging a target in a combat, and requires the user to have both feet firmly planted before striking for this ‘charged’ attack. Charge cannot be combined with Backstab, Murder, or Frightening Force; however it may be combined with other Skills. Do not actually strike a target harder when using the ‘charge’ Skill."
     },
     {
     name: 'Check Quality',
@@ -403,6 +548,11 @@ module.exports = {
     name: 'Cover of Night',
     mp: '5',
     desc: "This Skill is countered by Alert. Once the sun has completely set, and once you’re out of bright, artificial light, you may travel in the dark completely unseen with the invisible symbol up. The “invisible symbol” is represented by having your arm up over the lower half of your face (think of holding a cloak in front of your face). By spending 5 Mind Points, no artificial light short of flood lights or interior building lights will cause you to be seen. Walking or running do not break Cover of Night, but speaking, picking up objects, entering lit buildings or areas of bright lights, lowering the invisible symbol or using any other Skills causes Cover of Night to end immediately. Interacting with the environment (opening doors, picking up items, talking, using Skills, etc) ends this Dkill.  This Skill requires unrestricted movement to use, so this Skill may not be used if under the effects of Nail or other effects which hinder movement (Mangled Legs, Binds on legs, etc.)."
+    },
+    {
+    name: 'Double Tap',
+    mp: '1',
+    desc: "When you’re dealing with the living dead, your enemies don’t always stay down. By expending 1 Mind Point you can announce “Double-Tap!” when declaring a Killing Blow. Double-Tap not only is a successful Killing Blow, but if a creature has an ability or effect that would cause it to get up again after a Killing Blow, that capability is negated (this effect is specifically used on zombified creatures). In the event that the damage called after a Double-Tap is not sufficient to Killing Blow a creature, the cost of Double-Tap is still expended. Please note, do not attempt to Double-Tap every creature you come across- this will be a rather large waste of your precious Mind Points."
     },
     {
     name: 'Escape Bonds',
@@ -450,6 +600,11 @@ module.exports = {
     desc: "Money doesn’t grow on trees, but a few extra connections can certainly help. This Skill reflects that a person has a viable job between events; during Check In, they receive a certain amount of local currency as a reflection of their monthly income. This Skill may be purchased multiple times, up to a maximum of five, allowing for cumulative financial growth. For example, Income 1 provides 1 local currency, Income 2 provides 3 local currency, etc. This employment requires in-game roleplay where you advertise what it is that you do. Some acceptable employment examples include: scrounger, bartender, bouncer, guard, store operator, politician, gambler, pit fighter, caravan operator, farmer, fisher, entertainer, medic. (Note: While theoretically possible, openly advertising as an assassin, slaver, thief or other unsavory profession is a good way to meet local law enforcement, and it’s not likely to be for a friendly chat.) To learn this skill, you must either train yourself as a Strain Skill, or receive instruction from someone with equal or greater level of the Income Skill.  <strong>This Skill may only be used by a character at their home game.</strong>"
     },
     {
+    name: 'Interfere',
+    mp: 'Nil',
+    desc: "This Skill allows its user to declare “Interfere!” and immediately take the damage or Skill effect another person would have just taken, provided the user is within arm’s length of the target. Interfere transfers all damage and other negative effects to the person using this Skill. However, once transferred by Interfere no items, Brews, armors, defensive Skills, damage reduction, psionic powers, or other status altering Skills can reduce or prevent damage and effects suffered, even if they normally apply automatically.  To use Interfere, the user of the Skill must be able to take the effects of the effect and damage being called.  As an example, if you want to use Interfere to take the effects of a ‘Break Shield’, then the user of Interfere must have a shield that can be broken.  The same applies for all other forms of interfered skills (must have a working limb to interfere a mangle limb, must have working armor to interfere destroy armor, etc.).  This skill has no Mind Point cost."
+    },
+    {
     name: 'Literacy',
     mp: 'Nil',
     desc: "Literacy costs no Mind Points to use. This Skill allows its owner the rudimentary yet sadly all too uncommon ability to read and write, as well as perform simple math and written calculations. In addition to those benefits, this Skill is vital in duplication of most basic listed blueprints and documents."
@@ -458,6 +613,11 @@ module.exports = {
     name: 'Lore (Various Types)',
     mp: 'Nil',
     desc: "Lore is a Skill that shows your character has an understanding of a particular subject. For example, Lore: Grave Mind means that your character understands far more about the Grave Mind than the average character. In order to use this Skill, simply state the particular Lore that your character has (for example: Lore, Grave Mind) during an appropriate situation. In the case of Lore: Grave Mind, this can be examining a new creature that may have been spawned directly from the Grave Mind, or investigating some strange phenomenon occurring with the Grave Mind. That said, this Skill doesn’t mean that your character knows everything about a particular subject. Instead, it shows that your character has a basic understanding of it, and knows enough to be able to research particular topics more extensively. Lore is largely used in conjunction with the Educated Skill in order to find out more about certain topics. Simply stating the Lore without research will only give you the most rudimentary of information. For more information on Lores, take a look at the Lore section of the rulebook."
+    },
+    {
+    name: 'Melee Weapon, Expert',
+    mp: '5 Per 2',
+    desc: "Simply knowing how to swing a weapon doesn’t mean that you’re an expert. Those with this Skill, though, are another story. A person with Melee Weapon Expert has become so lethal with different forms of melee weaponry that every strike finds its way to more vital portions of the body. With the Skill, you may increase the amount of damage you can declare with a single weapon by 2 for every 5 Mind Points spent, up to an overall maximum of 20 damage. (Melee Weapon Expert can never cause an attack to inflict over 20 damage.) For example, if your weapon normally swings for 5 Damage, you can spend 10 Mind Points and swing for 9 Damage. The duration of this effect is 5 minutes. The user must stand Still for 30 seconds, with a weapon at the ready, before announcing use of this Skill as they prepare themselves with battle focus or meditation.  Melee Weapon expert may only be used on weapons covered under Melee skills (not Brawling) unless equipment states otherwise."
     },
     {
     name: 'Melee Weapon, Large',
@@ -478,6 +638,11 @@ module.exports = {
     name: 'Melee Weapon, Two-Hand',
     mp: 'Nil',
     desc: "This Skill costs no Mind Points, and allows its owner to wield a melee weapon no smaller than 60 inches in length and no longer than 63 inches in length. This weapon is required to be wielded with two hands at all times (see weapon rules). Default two-handed weapons deal 3 damage. If a Disarming Strike or Shot is used on a Melee Two handed weapon, the two handed weapon is not dropped, but instead is disarmed from one of the two hands and un-wieldable for 5 seconds (cannot strike, defend, or use Skills with this weapon). If Disarming Shot is used when a two handed weapon is carried in one hand, the weapon is disarmed."
+    },
+    {
+    name: 'Nail',
+    mp: '5',
+    desc: "This Skill is countered by Avoid or Bounce. This Skill allows a person to impale a target using a javelin or bow. By spending 5 Mind Points, calling “Nail, stuck in place, 5 minutes!” and landing a successful strike with a thrown javelin or bow, the user renders a target unable to move from that spot for 5 minutes, unless someone else comes over and role-plays removing the stuck weapon for at least a count of 10.  (Targets cannot normally free themselves, though certainly inhumanly strong or physically abnormal NPCs may be able to do so with the Pull Through Skill.) Persons hit with this Skill are required to lift the thrown javelin or arrow packet and place it under their arm to show that they are pinned to the spot. The attack still inflicts its standard damage."
     },
     {
     name: 'Parry',
@@ -510,6 +675,11 @@ module.exports = {
     desc: "There isn’t much in the way of mass production anymore, so being able to pick out the useful bits from the rubble helps. A person with this skill has the ability to pick up Scrounge cards from the ground. You don’t have to spend Mind Points to identify these cards, but you do have to spend 1 Mind Point per level of the card when scrounging. These Scrounge cards will be located across the game site, and require you to physically hunt them down and find them in order to collect them. You must spend 2 minutes role playing ‘harvesting’ or ‘gathering’ the scrounge card for each level on the card. Cards cannot be partially collected and if combat or something else interrupts you, then you must leave the card. Once you collect the card, you can turn the scrounge card into Logistics to receive a random scrounged item—usually Scrap or Herb (notated on the card). Note that if you do not have the Scrounge skill, you cannot pick up Scrounge cards from the ground or point out the existence of scrounge cards to other people."
     },
     {
+    name: 'Sever',
+    mp: '5',
+    desc: "This skill can be countered by Parry if it’s delivered to the front. By spending 5 Mind Points and landing a successful melee attack, the user of Sever can declare 15 damage with a single strike. This damage does not stack with any other damage bonuses."
+    },
+    {
     name: 'Shield',
     mp: 'Nil',
     desc: "This skill costs no Mind Points, and allows the user of this skill to wield a shield. Shields do not prevent damage from firearms, and may not be used as weapons. For example, if someone fires bullets at your shield, you take the damage; the shield does not block it.  Instead, shields can be used to block thrown weapons, bows and melee attacks.  For safety reasons shields may not have a surface area of more than 9 total square feet. Holes and carved out sections will not deduct from the total of 9 square feet of surface area. A shield may not stand more than 4 feet tall, nor wider than 4 feet wide at its widest point.<br><br>Examples: A rectangle shield that is 4 feet tall cannot be more than 2.75 feet wide to remain under the 9 square foot restriction. A shield that is 3 feet tall may be 3 feet wide to remain under the 9 square foot restriction. A “grid” shield that is a series of banded bars with open spaces still may not be more than 3 feet tall if 3 feet wide, as the interior holes do not subtract from the total surface space.<br><br>Items that are not crafted shields may NEVER be used as a shield. Strikes that land on ‘improvised shields’ are considered hits, and usage of improvised items as shields will result in safety violations (IE: Using a briefcase as a shield)."
@@ -538,6 +708,11 @@ module.exports = {
     name: 'Tie Binds',
     mp: '1',
     desc: "This Skill is countered by Escape Bonds. By spending 1 Mind Point, you can tie a bond on willing, Bleeding Out or unconscious targets. A Tied Bond limits the actions a person can take; bound hands prevent that person from fighting or manipulating objects, while bound feet prevent that person from moving at anything faster than a slow walk. In addition, a person with bound feet can be prevented from moving by anyone not also restrained; this simply requires gently touching the bound target on the shoulder and announcing that you have halted their movement. A section of rope or fabric is used to represent bonds, draped across both wrists of a target or tied around one ankle. (For safety reasons, a player should never be actually tied up or otherwise restrained.) Bonds may be removed by anyone not bound themselves, unless an Item Card is used that locks the binds; removal instructions will be found on the Item Card."
+    },
+    {
+    name: 'Trade Ties',
+    mp: 'Nil',
+    desc: "This Skill represents access to bartering connections, allowing you to swap certain resources for ones you need more. During Check In, you may trade Scrap and Herb at the following rates:<br><br>2 Scrap ==> 1 Herb of the Same Quality (Basic, Uncommon, Rare)<br><br>3 Basic Scrap <=> 1 Uncommon Scrap<br><br>3 Uncommon Scrap <=> 1 Rare Scrap<br><br>3 Basic Herb <=> 1 Uncommon Herb<br><br>3 Uncommon Herb <=> 1 Rare Herb<br><br>Herb gained through this Skill is considered Wild and has a 3 month expiration. Scrap or Herb traded in this way cannot be exchanged more than once, so you cannot trade 6 Uncommon Scrap for 3 Uncommon Herbs, and immediately trade them again for 1 Rare Herb. You may also find special items available for sale exclusively through Trade Ties. Unique Trade Routes, Caravans, Maps, and other items can sometimes be obtained in game that open up additional trade opportunities through this Skill.  <strong>This Skill may only be used by a character at their home game.</strong>"
     },
     {
     name: 'Weld',

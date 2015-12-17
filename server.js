@@ -27,7 +27,7 @@ mongoose.connect('mongodb://localhost/dr_app');
 // =============================
 // Models
 // =============================
-var Book = require('./models/char.js');
+var Char = require('./models/char.js');
 
 // =============================
 // Homemade API
@@ -51,7 +51,7 @@ app.get('/dystopia', function(req,res){
 
 // Index =============================================================//
 app.get('/chars', function(req, res) {
-	Book.find().then(function(chars) {
+	Char.find().then(function(chars) {
 		console.log('==================');
 		console.log(chars);
 		console.log(typeof chars);
@@ -62,7 +62,7 @@ app.get('/chars', function(req, res) {
 
 // Show ===============================================================//
 app.get('/chars/:id', function(req, res) {
-	Book.findById(req.params.id).then(function(char) {
+	Char.findById(req.params.id).then(function(char) {
 		console.log('==================');
 		console.log(char);
 		console.log(typeof char);
@@ -73,7 +73,7 @@ app.get('/chars/:id', function(req, res) {
 
 // Create =============================================================//
 app.post('/chars', function(req, res) {
-	var char = new Book(req.body);
+	var char = new Char(req.body);
 	char.save(function(err) {
 		if(err) {
 			console.log('ERROR: ' + err);
@@ -86,7 +86,7 @@ app.post('/chars', function(req, res) {
 
 // Update ==============================================================//
 app.put('/chars/:id', function(req, res) {
-	Book.findOneAndUpdate({
+	Char.findOneAndUpdate({
 		_id: req.params.id
 	}, {
 		$set: req.body
@@ -97,7 +97,7 @@ app.put('/chars/:id', function(req, res) {
 
 // Delete ===============================================================//
 app.delete('/chars/:id', function(req, res) {
-	Book.findOneAndRemove({_id: req.params.id}, function(err) {
+	Char.findOneAndRemove({_id: req.params.id}, function(err) {
 		if(err) console.log(err);
 		console.log('Character deleted');
 		res.send('Character deleted');

@@ -132,45 +132,36 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 
 					}); //buildSkillList.forEach
 
-					skillCount = 0
-					console.log("Final skill list");
-					finalSkillList.forEach(function(skill){
-						skillCount++
-						console.log(skillCount + " " + skill.name);
-					})
-
 				}); //.get
 
 			} //addProf
 
-
-			// Add Skills ========================>
+			// Add/Remove Skills ========================>
 
 			this.addSkill = function(skill){
 
 				if(buildPoints - skill.cost >= 0){
 					buildPoints = buildPoints - skill.cost;
 					this.buildPoints = buildPoints
-					console.log(buildPoints);
 
 					addedSkillsList.push(skill);
-					console.log(addedSkillsList);
+					console.log(skill);
+					console.log("skill list is now: " + addedSkillsList);
 				}
 				else if(buildPoints - skill.cost <= 0) {
 					alert("You do not have enough build left for this skill")
 				}
 
-			}
+			};
 
-			this.removeSkill = function(skill){
+			this.clearSkills = function(){
 
-				buildPoints = buildPoints + skill.cost;
-				this.buildPoints = buildPoints
-				console.log(buildPoints);
+				addedSkillsList.forEach(function(skill){
+					finalSkillList.push(skill);
+				})
 
-				addedSkillsList.pop(skill);
-				finalSkillList.push(skill);
-				console.log(addedSkillsList);
+				addedSkillsList = [];
+				this.addedSkillsList = addedSkillsList;
 
 			}
 			// Change stats ========================>
@@ -229,6 +220,9 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 // ADD CHARACTER ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			this.addChar = function() {
+
+				// var self = this;
+
 				self.$http.post('/chars', {
 					name: this.formCharName,
 					strain: this.strainName,
@@ -248,14 +242,14 @@ var app = angular.module('DRApp', []).directive('ngdrapp', function() {
 					self.chars.push(response.data);
 					self.formCharName = '';
 					self.formCharStrain = '';
-					this.mind = 0;
-					this.health = 0;
-					this.infection = 0;
-					this.profName = '';
-					this.addedSkillsList = [];
-					this.adv = '';
-					this.dis = [];
-					buildPoints = 13;
+					self.mind = 0;
+					self.health = 0;
+					self.infection = 0;
+					self.profName = '';
+					self.addedSkillsList = [];
+					self.adv = '';
+					self.dis = [];
+					self.buildPoints = 13;
 					self.formCharimgURL = '';
 					self.formCharBackstory = '';
 
